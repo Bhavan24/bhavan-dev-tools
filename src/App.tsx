@@ -1,23 +1,36 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+import { Code, Gcp, Gpt, Kaya, Testing, Utility } from './components/index.js';
 
 function App() {
     return (
-        <Tabs>
+        <Tabs isFitted>
             <TabList>
-                <Tab>One</Tab>
-                <Tab>Two</Tab>
-                <Tab>Three</Tab>
+                <Tab>Utility</Tab>
+                <Tab>Testing</Tab>
+                <Tab>Bhavan-GPT</Tab>
+                <Tab>Code</Tab>
+                <Tab>GCP</Tab>
+                <Tab>Kaya</Tab>
             </TabList>
 
             <TabPanels>
                 <TabPanel>
-                    <p>one!</p>
+                    <Utility />
                 </TabPanel>
                 <TabPanel>
-                    <p>two!</p>
+                    <Testing />
                 </TabPanel>
                 <TabPanel>
-                    <p>three!</p>
+                    <Gpt />
+                </TabPanel>
+                <TabPanel>
+                    <Code />
+                </TabPanel>
+                <TabPanel>
+                    <Gcp />
+                </TabPanel>
+                <TabPanel>
+                    <Kaya />
                 </TabPanel>
             </TabPanels>
         </Tabs>
