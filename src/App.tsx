@@ -7,7 +7,7 @@ function App() {
             <TabList>
                 <Tab>Utility</Tab>
                 <Tab>Testing</Tab>
-                <Tab>Bhavan-GPT</Tab>
+                <Tab>GPT</Tab>
                 <Tab>Code</Tab>
                 <Tab>GCP</Tab>
                 <Tab>Kaya</Tab>
