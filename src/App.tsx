@@ -1,5 +1,5 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
-import { Code, Gcp, Gpt, Kaya, Testing, Utility } from './components/index.js';
+import { Code, Gcp, Gpt, Kaya, Testing, Utility } from './pages/index.js';
 
 function App() {
     return (
