@@ -1,4 +1,4 @@
-import { Box, Button, SimpleGrid } from '@chakra-ui/react';
+import { Button, SimpleGrid } from '@chakra-ui/react';
 import { useState } from 'react';
 import { TextFieldWithCopy } from '../../components/index.js';
 import './index.css';
@@ -17,19 +17,13 @@ const Utility = () => {
     };
 
     return (
-        <SimpleGrid columns={2} spacing={10}>
-            <Box height="80px">
-                <div className="box-wrapper">
-                    <TextFieldWithCopy value={ip} setValue={setIp} />
-                    <Button padding="5" isLoading={ipLoading} onClick={getPublicIp} loadingText="Loading...">
-                        Get Public IP
-                    </Button>
-                </div>
-            </Box>
-            <Box height="80px"></Box>
-            <Box height="80px"></Box>
-            <Box height="80px"></Box>
-            <Box height="80px"></Box>
+        <SimpleGrid columns={1} spacing={10}>
+            <div className="box-wrapper">
+                <TextFieldWithCopy value={ip} setValue={setIp} />
+                <Button padding="5" isLoading={ipLoading} onClick={getPublicIp} loadingText="Loading...">
+                    Get Public IP
+                </Button>
+            </div>
         </SimpleGrid>
     );
 };
