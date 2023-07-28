@@ -1,6 +1,6 @@
 import { Tabs } from '@mantine/core';
 import * as Icons from 'react-icons/ri';
-import { Code, Gcp, Gpt, Kaya, Testing, Utility } from './pages';
+import { Gpt, Links, Testing, Utility } from './pages';
 
 function App() {
     return (
@@ -16,14 +16,8 @@ function App() {
                     <Tabs.Tab value="gpt" icon={<Icons.RiOpenaiFill />}>
                         GPT
                     </Tabs.Tab>
-                    <Tabs.Tab value="code" icon={<Icons.RiFileCodeLine />}>
-                        Code
-                    </Tabs.Tab>
-                    <Tabs.Tab value="gcp" icon={<Icons.RiGoogleFill />}>
-                        GCP
-                    </Tabs.Tab>
-                    <Tabs.Tab value="kaya" icon={<Icons.RiKeyFill />}>
-                        Kaya
+                    <Tabs.Tab value="links" icon={<Icons.RiLinksFill />}>
+                        Links
                     </Tabs.Tab>
                 </Tabs.List>
 
@@ -39,16 +33,8 @@ function App() {
                     <Gpt />
                 </Tabs.Panel>
 
-                <Tabs.Panel value="code" pt="xs">
-                    <Code />
-                </Tabs.Panel>
-
-                <Tabs.Panel value="gcp" pt="xs">
-                    <Gcp />
-                </Tabs.Panel>
-
-                <Tabs.Panel value="kaya" pt="xs">
-                    <Kaya />
+                <Tabs.Panel value="links" pt="xs">
+                    <Links />
                 </Tabs.Panel>
             </Tabs>
         </div>
