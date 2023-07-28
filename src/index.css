@@ -12,3 +12,13 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
 }
+
+#root {
+    margin: 0 auto;
+}
+
+body {
+    margin: 0;
+    min-width: 600px;
+    min-height: 100vh;
+}

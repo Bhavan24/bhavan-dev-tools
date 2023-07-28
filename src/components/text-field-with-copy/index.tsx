@@ -15,17 +15,16 @@ const TextFieldWithCopy = ({ value, setValue }: ITextFieldWithCopy) => {
     };
 
     return (
-        <div>
-            <TextInput
-                value={value}
-                onChange={handleChange}
-                rightSection={
-                    <ActionIcon variant="transparent" onClick={handleClick}>
-                        <Icons.RiFileCopyLine />
-                    </ActionIcon>
-                }
-            />
-        </div>
+        <TextInput
+            maw={250}
+            value={value}
+            onChange={handleChange}
+            rightSection={
+                <ActionIcon variant="transparent" onClick={handleClick}>
+                    <Icons.RiFileCopyLine />
+                </ActionIcon>
+            }
+        />
     );
 };
 
