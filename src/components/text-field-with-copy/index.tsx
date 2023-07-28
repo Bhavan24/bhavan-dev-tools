@@ -1,6 +1,6 @@
-import { CopyIcon } from '@chakra-ui/icons';
-import { IconButton, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
+import { ActionIcon, TextInput } from '@mantine/core';
 import React from 'react';
+import * as Icons from 'react-icons/ri';
 
 interface ITextFieldWithCopy {
     value: string;
@@ -15,12 +15,17 @@ const TextFieldWithCopy = ({ value, setValue }: ITextFieldWithCopy) => {
     };
 
     return (
-        <InputGroup size="md">
-            <Input pr="4.5rem" value={value} onChange={handleChange} />
-            <InputRightElement>
-                <IconButton size="sm" aria-label="Copy" icon={<CopyIcon />} onClick={handleClick} />
-            </InputRightElement>
-        </InputGroup>
+        <div>
+            <TextInput
+                value={value}
+                onChange={handleChange}
+                rightSection={
+                    <ActionIcon variant="transparent" onClick={handleClick}>
+                        <Icons.RiFileCopyLine />
+                    </ActionIcon>
+                }
+            />
+        </div>
     );
 };
 

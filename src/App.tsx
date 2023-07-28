@@ -1,38 +1,54 @@
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+import { Tabs } from '@mantine/core';
+import * as Icons from 'react-icons/ri';
 import { Code, Gcp, Gpt, Kaya, Testing, Utility } from './pages';
 
 function App() {
     return (
-        <Tabs isFitted>
-            <TabList>
-                <Tab>Utility</Tab>
-                <Tab>Testing</Tab>
-                <Tab>GPT</Tab>
-                <Tab>Code</Tab>
-                <Tab>GCP</Tab>
-                <Tab>Kaya</Tab>
-            </TabList>
+        <Tabs defaultValue="gallery">
+            <Tabs.List grow >
+                <Tabs.Tab value="utility" icon={<Icons.RiMicrosoftFill />}>
+                    Utility
+                </Tabs.Tab>
+                <Tabs.Tab value="testing" icon={<Icons.RiDatabase2Line />}>
+                    Testing
+                </Tabs.Tab>
+                <Tabs.Tab value="gpt" icon={<Icons.RiOpenaiFill />}>
+                    GPT
+                </Tabs.Tab>
+                <Tabs.Tab value="code" icon={<Icons.RiFileCodeLine />}>
+                    Code
+                </Tabs.Tab>
+                <Tabs.Tab value="gcp" icon={<Icons.RiGoogleFill />}>
+                    GCP
+                </Tabs.Tab>
+                <Tabs.Tab value="kaya" icon={<Icons.RiKeyFill />}>
+                    Kaya
+                </Tabs.Tab>
+            </Tabs.List>
 
-            <TabPanels>
-                <TabPanel>
-                    <Utility />
-                </TabPanel>
-                <TabPanel>
-                    <Testing />
-                </TabPanel>
-                <TabPanel>
-                    <Gpt />
-                </TabPanel>
-                <TabPanel>
-                    <Code />
-                </TabPanel>
-                <TabPanel>
-                    <Gcp />
-                </TabPanel>
-                <TabPanel>
-                    <Kaya />
-                </TabPanel>
-            </TabPanels>
+            <Tabs.Panel value="utility" pt="xs">
+                <Utility />
+            </Tabs.Panel>
+
+            <Tabs.Panel value="testing" pt="xs">
+                <Testing />
+            </Tabs.Panel>
+
+            <Tabs.Panel value="gpt" pt="xs">
+                <Gpt />
+            </Tabs.Panel>
+
+            <Tabs.Panel value="code" pt="xs">
+                <Code />
+            </Tabs.Panel>
+
+            <Tabs.Panel value="gcp" pt="xs">
+                <Gcp />
+            </Tabs.Panel>
+
+            <Tabs.Panel value="kaya" pt="xs">
+                <Kaya />
+            </Tabs.Panel>
         </Tabs>
     );
 }

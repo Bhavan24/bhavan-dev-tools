@@ -1,4 +1,4 @@
-import { Button, SimpleGrid } from '@chakra-ui/react';
+import { Button, SimpleGrid } from '@mantine/core';
 import { useState } from 'react';
 import { TextFieldWithCopy } from '../../components';
 import './index.css';
@@ -17,10 +17,10 @@ const Utility = () => {
     };
 
     return (
-        <SimpleGrid columns={1} spacing={10}>
+        <SimpleGrid spacing={10}>
             <div className="box-wrapper">
                 <TextFieldWithCopy value={ip} setValue={setIp} />
-                <Button padding="5" isLoading={ipLoading} onClick={getPublicIp} loadingText="Loading...">
+                <Button loading={ipLoading} onClick={getPublicIp}>
                     Get Public IP
                 </Button>
             </div>
