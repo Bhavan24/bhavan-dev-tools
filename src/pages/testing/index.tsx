@@ -326,7 +326,7 @@ const Testing = () => {
 
     return (
         <div>
-            <Button onClick={generateData} fullWidth py={5}>
+            <Button onClick={generateData} fullWidth m={5}>
                 Generate Data
             </Button>
 
