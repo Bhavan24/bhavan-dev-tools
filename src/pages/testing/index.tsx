@@ -1,4 +1,4 @@
-import { Button, SimpleGrid, Tabs } from '@mantine/core';
+import { Button, Flex, SimpleGrid, Tabs } from '@mantine/core';
 import { Chance } from 'chance';
 import { useState } from 'react';
 import { TextFieldWithCopy } from '../../components';
@@ -325,8 +325,8 @@ const Testing = () => {
     };
 
     return (
-        <div>
-            <Button onClick={generateData} fullWidth m={5}>
+        <Flex gap="sm" justify="center" align="center" direction="column" wrap="wrap" m={5}>
+            <Button onClick={generateData} w="50%" p={5}>
                 Generate Data
             </Button>
 
@@ -347,7 +347,7 @@ const Testing = () => {
                     ))}
                 </Tabs>
             )}
-        </div>
+        </Flex>
     );
 };
 
