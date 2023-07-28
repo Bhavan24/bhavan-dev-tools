@@ -1,7 +1,6 @@
-import { Button, Tabs, TextInput } from '@mantine/core';
-import { SyntheticEvent, useState } from 'react';
-
+import { Button, SimpleGrid, Tabs } from '@mantine/core';
 import { Chance } from 'chance';
+import { useState } from 'react';
 import { TextFieldWithCopy } from '../../components';
 
 const test_data_tabs = [
@@ -77,31 +76,13 @@ const getFakeData = (count: number) => {
     };
 };
 
-const TestDataField = (props: any) => {
-    const { isRandomWord, wordCount, handleWordCount } = props;
-
-    if (isRandomWord) {
-        return (
-            <>
-                <TextInput
-                    label={'Word Count'}
-                    type="text"
-                    variant="outlined"
-                    value={wordCount}
-                    sx={{ mr: 2 }}
-                    onChange={handleWordCount}
-                />
-                <TextFieldWithCopy placeHolder={props.fieldName} value={props.fieldData} setValue={() => {}} />
-            </>
-        );
-    } else {
-        return <TextFieldWithCopy placeHolder={props.fieldName} value={props.fieldData} setValue={() => {}} />;
-    }
+const TestDataField = ({ fieldName, fieldData }: any) => {
+    return <TextFieldWithCopy label={fieldName} value={fieldData} setValue={() => {}} />;
 };
 
 const Testing = () => {
     const [wordCount, setWordCount] = useState(50);
-    const [data, setData] = useState(getFakeData(wordCount));
+    const [data, setData] = useState<any>();
 
     const handleWordCount = (e: any) => {
         setWordCount(e.target.value);
@@ -117,7 +98,7 @@ const Testing = () => {
             case 0:
                 return (
                     <>
-                        <div>
+                        <SimpleGrid cols={2}>
                             <div>
                                 <TestDataField multiline={false} fieldName={'Name'} fieldData={data.name} />
                             </div>
@@ -160,13 +141,13 @@ const Testing = () => {
                                     fieldData={data.birthday.toString()}
                                 />
                             </div>
-                        </div>
+                        </SimpleGrid>
                     </>
                 );
             case 1:
                 return (
                     <>
-                        <div>
+                        <SimpleGrid cols={2}>
                             <div>
                                 <TestDataField
                                     multiline={true}
@@ -193,13 +174,13 @@ const Testing = () => {
                             <div>
                                 <TestDataField multiline={true} fieldName={'Sentence'} fieldData={data.sentence} />
                             </div>
-                        </div>
+                        </SimpleGrid>
                     </>
                 );
             case 2:
                 return (
                     <>
-                        <div>
+                        <SimpleGrid cols={2}>
                             <div>
                                 <TestDataField multiline={false} fieldName={'Color'} fieldData={data.color} />
                             </div>
@@ -224,13 +205,13 @@ const Testing = () => {
                             <div>
                                 <TestDataField multiline={false} fieldName={'Password'} fieldData={data.password} />
                             </div>
-                        </div>
+                        </SimpleGrid>
                     </>
                 );
             case 3:
                 return (
                     <>
-                        <div>
+                        <SimpleGrid cols={2}>
                             <div>
                                 <TestDataField multiline={false} fieldName={'Address'} fieldData={data.address} />
                             </div>
@@ -258,13 +239,13 @@ const Testing = () => {
                             <div>
                                 <TestDataField multiline={false} fieldName={'Locale'} fieldData={data.locale} />
                             </div>
-                        </div>
+                        </SimpleGrid>
                     </>
                 );
             case 4:
                 return (
                     <>
-                        <div>
+                        <SimpleGrid cols={2}>
                             <div>
                                 <TestDataField multiline={false} fieldName={'Date'} fieldData={data.date.toString()} />
                             </div>
@@ -289,13 +270,13 @@ const Testing = () => {
                                     fieldData={data.millisecond.toString()}
                                 />
                             </div>
-                        </div>
+                        </SimpleGrid>
                     </>
                 );
             case 5:
                 return (
                     <>
-                        <div>
+                        <SimpleGrid cols={2}>
                             <div>
                                 <TestDataField multiline={false} fieldName={'CC'} fieldData={data.cc} />
                             </div>
@@ -312,13 +293,13 @@ const Testing = () => {
                             <div>
                                 <TestDataField multiline={false} fieldName={'Euro'} fieldData={data.euro} />
                             </div>
-                        </div>
+                        </SimpleGrid>
                     </>
                 );
             case 6:
                 return (
                     <>
-                        <div>
+                        <SimpleGrid cols={2}>
                             <div>
                                 <TestDataField multiline={false} fieldName={'GUID'} fieldData={data.guid.toString()} />
                             </div>
@@ -335,7 +316,7 @@ const Testing = () => {
                                     fieldData={data.apple_token}
                                 />
                             </div>
-                        </div>
+                        </SimpleGrid>
                     </>
                 );
             default:
@@ -345,24 +326,27 @@ const Testing = () => {
 
     return (
         <div>
-            <Button onClick={generateData} fullWidth>
+            <Button onClick={generateData} fullWidth py={5}>
                 Generate Data
             </Button>
-            <Tabs defaultValue={test_data_tabs[0].value}>
-                <Tabs.List grow>
-                    {test_data_tabs.map(test_data_tab => (
-                        <Tabs.Tab key={test_data_tab.id} value={test_data_tab.value}>
-                            {test_data_tab.name}
-                        </Tabs.Tab>
-                    ))}
-                </Tabs.List>
 
-                {test_data_tabs.map(test_data_tab => (
-                    <Tabs.Panel key={test_data_tab.id} value={test_data_tab.value}>
-                        {getTestDataComponent(test_data_tab.id)}
-                    </Tabs.Panel>
-                ))}
-            </Tabs>
+            {data && (
+                <Tabs defaultValue={test_data_tabs[0].value}>
+                    <Tabs.List grow>
+                        {test_data_tabs.map(test_data_tab => (
+                            <Tabs.Tab key={test_data_tab.id} value={test_data_tab.value}>
+                                {test_data_tab.name}
+                            </Tabs.Tab>
+                        ))}
+                    </Tabs.List>
+
+                    {test_data_tabs.map(test_data_tab => (
+                        <Tabs.Panel key={test_data_tab.id} value={test_data_tab.value}>
+                            <div style={{ padding: '15px' }}>{getTestDataComponent(test_data_tab.id)}</div>
+                        </Tabs.Panel>
+                    ))}
+                </Tabs>
+            )}
         </div>
     );
 };

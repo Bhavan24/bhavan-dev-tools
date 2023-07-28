@@ -6,9 +6,17 @@ interface ITextFieldWithCopy {
     value: string;
     setValue: React.Dispatch<React.SetStateAction<string>>;
     placeHolder?: string;
+    label?: string;
+    fullWidth?: boolean;
 }
 
-const TextFieldWithCopy = ({ value, setValue, placeHolder = '' }: ITextFieldWithCopy) => {
+const TextFieldWithCopy = ({
+    value,
+    setValue,
+    placeHolder = '',
+    label = '',
+    fullWidth = false,
+}: ITextFieldWithCopy) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value || '');
 
     const handleClick = () => {
@@ -18,6 +26,8 @@ const TextFieldWithCopy = ({ value, setValue, placeHolder = '' }: ITextFieldWith
     return (
         <TextInput
             placeholder={placeHolder}
+            label={label}
+            style={fullWidth ? { width: '100%' } : {}}
             miw={350}
             value={value}
             onChange={handleChange}
