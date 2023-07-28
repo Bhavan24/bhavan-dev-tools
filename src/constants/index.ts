@@ -18,12 +18,12 @@ export const TEXT_CASES = [
 ];
 
 export const DATE_TYPES = [
-    { value: 0, label: 'toString' },
-    { value: 1, label: 'toISOString' },
-    { value: 2, label: 'toDateString' },
-    { value: 3, label: 'toTimeString' },
-    { value: 4, label: 'toUTCString' },
-    { value: 5, label: 'toLocaleTimeString' },
-    { value: 6, label: 'toLocaleDateString' },
-    { value: 7, label: 'toLocaleString' },
+    { value: '0', label: 'toString' },
+    { value: '1', label: 'toISOString' },
+    { value: '2', label: 'toDateString' },
+    { value: '3', label: 'toTimeString' },
+    { value: '4', label: 'toUTCString' },
+    { value: '5', label: 'toLocaleTimeString' },
+    { value: '6', label: 'toLocaleDateString' },
+    { value: '7', label: 'toLocaleString' },
 ];

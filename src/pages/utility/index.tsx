@@ -1,4 +1,4 @@
-import { Button, Flex, SimpleGrid } from '@mantine/core';
+import { Button, Flex, Select, SimpleGrid } from '@mantine/core';
 import * as changeCase from 'change-case';
 import { useState } from 'react';
 import { TextFieldWithCopy } from '../../components';
@@ -44,8 +44,8 @@ const GetTimestampComponent = () => {
 
 const ConvertTimestampComponent = () => {
     const [ts, setTs] = useState('');
-    const [tsType, setTsType] = useState(0);
     const [convertedTs, setConvertedTs] = useState('');
+    const [tsType, setTsType] = useState<string | null>(null);
 
     const get_time_value = (timestamp: any) => {
         let date = new Date(+timestamp).toString();
@@ -55,7 +55,6 @@ const ConvertTimestampComponent = () => {
     const handleChangeTimestamp = () => {
         var currentText = '';
         const timeString = get_time_value(ts);
-        console.log(timeString);
 
         switch (tsType) {
             case DATE_TYPES[0].value:
@@ -91,10 +90,11 @@ const ConvertTimestampComponent = () => {
     };
 
     return (
-        <Flex mih={50} gap="sm" justify="center" align="center" direction="row" wrap="wrap">
-            <TextFieldWithCopy value={ts} setValue={setTs} />
-            <TextFieldWithCopy value={convertedTs} setValue={setConvertedTs} />
-            <Button onClick={handleChangeTimestamp}>Get Timestamp</Button>
+        <Flex mih={50} gap="sm" justify="center" align="center" direction="column" wrap="wrap">
+            <TextFieldWithCopy placeHolder="Timestamp" value={ts} setValue={setTs} />
+            <Select placeholder="Pick Conversion Type" data={DATE_TYPES} value={tsType} onChange={setTsType} />
+            <TextFieldWithCopy placeHolder="Human Readable Time" value={convertedTs} setValue={setConvertedTs} />
+            <Button onClick={handleChangeTimestamp}>Convert</Button>
         </Flex>
     );
 };
@@ -102,7 +102,7 @@ const ConvertTimestampComponent = () => {
 const ChangeTextCaseComponent = () => {
     const [text, setText] = useState('');
     const [finalText, setFinalText] = useState('');
-    const [textCase, setCase] = useState(TEXT_CASES[0].value);
+    const [textCase, setCase] = useState<string | null>(null);
 
     const handleChangeCase = () => {
         var currentText = '';
@@ -156,10 +156,10 @@ const ChangeTextCaseComponent = () => {
     };
 
     return (
-        <Flex mih={50} gap="sm" justify="center" align="center" direction="row" wrap="wrap">
-            <TextFieldWithCopy value={text} setValue={setText} />
-
-            <TextFieldWithCopy value={finalText} setValue={setFinalText} />
+        <Flex mih={50} gap="sm" justify="center" align="center" direction="column" wrap="wrap">
+            <TextFieldWithCopy placeHolder="Text" value={text} setValue={setText} />
+            <Select placeholder="Pick Conversion Type" data={TEXT_CASES} value={textCase} onChange={setCase} />
+            <TextFieldWithCopy placeHolder="Converted Text" value={finalText} setValue={setFinalText} />
             <Button onClick={handleChangeCase}>Convert</Button>
         </Flex>
     );
@@ -170,8 +170,8 @@ const Utility = () => {
         <SimpleGrid cols={2} spacing="sm" verticalSpacing="sm" py={10}>
             <GetPublicIpComponent />
             <GetTimestampComponent />
-            <ConvertTimestampComponent />
             <ChangeTextCaseComponent />
+            <ConvertTimestampComponent />
         </SimpleGrid>
     );
 };

@@ -5,9 +5,10 @@ import * as Icons from 'react-icons/ri';
 interface ITextFieldWithCopy {
     value: string;
     setValue: React.Dispatch<React.SetStateAction<string>>;
+    placeHolder?: string;
 }
 
-const TextFieldWithCopy = ({ value, setValue }: ITextFieldWithCopy) => {
+const TextFieldWithCopy = ({ value, setValue, placeHolder = '' }: ITextFieldWithCopy) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value || '');
 
     const handleClick = () => {
@@ -16,6 +17,7 @@ const TextFieldWithCopy = ({ value, setValue }: ITextFieldWithCopy) => {
 
     return (
         <TextInput
+            placeholder={placeHolder}
             maw={250}
             value={value}
             onChange={handleChange}
