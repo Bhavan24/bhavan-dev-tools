@@ -1,1 +1,1 @@
-export * from './text-field-with-copy/index.js';
+export * from './text-field-with-copy';

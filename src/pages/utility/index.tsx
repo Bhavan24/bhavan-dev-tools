@@ -1,6 +1,6 @@
 import { Button, SimpleGrid } from '@chakra-ui/react';
 import { useState } from 'react';
-import { TextFieldWithCopy } from '../../components/index.js';
+import { TextFieldWithCopy } from '../../components';
 import './index.css';
 
 const Utility = () => {
