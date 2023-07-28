@@ -1,29 +1,56 @@
 export const OPEN_AI_ORGANIZATION_KEY = 'org-fUnU6QiypzI74bYqlRAfrlgR';
 export const OPEN_AI_API_KEY = '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';
 
+export enum TextCases {
+    lowerCase = 'lowercase',
+    upperCase = 'UPPERCASE',
+    camelCase = 'camelCase',
+    capitalCase = 'Capital Case',
+    constantCase = 'CONSTANT_CASE',
+    dotCase = 'dot.case',
+    headerCase = 'Header-Case',
+    noCase = 'no case',
+    paramCase = 'param-case',
+    pascalCase = 'PascalCase',
+    pathCase = 'path/case',
+    sentenceCase = 'Sentence case',
+    snakeCase = 'snake_case',
+}
+
+export enum DateTypes {
+    toString = 'String',
+    toISOString = 'ISO String',
+    toDateString = 'Date String',
+    toTimeString = 'Time String',
+    toUTCString = 'UTC String',
+    toLocaleTimeString = 'Locale Time String',
+    toLocaleDateString = 'Locale Date String',
+    toLocaleString = 'Locale String',
+}
+
 export const TEXT_CASES = [
-    { value: 'lowerCase', label: 'lowercase' },
-    { value: 'upperCase', label: 'UPPERCASE' },
-    { value: 'camelCase', label: 'camelCase' },
-    { value: 'capitalCase', label: 'Capital Case' },
-    { value: 'constantCase', label: 'CONSTANT_CASE' },
-    { value: 'dotCase', label: 'dot.case' },
-    { value: 'headerCase', label: 'Header-Case' },
-    { value: 'noCase', label: 'no case' },
-    { value: 'paramCase', label: 'param-case' },
-    { value: 'pascalCase', label: 'PascalCase' },
-    { value: 'pathCase', label: 'path/case' },
-    { value: 'sentenceCase', label: 'Sentence case' },
-    { value: 'snakeCase', label: 'snake_case' },
+    TextCases.lowerCase,
+    TextCases.upperCase,
+    TextCases.camelCase,
+    TextCases.capitalCase,
+    TextCases.constantCase,
+    TextCases.dotCase,
+    TextCases.headerCase,
+    TextCases.noCase,
+    TextCases.paramCase,
+    TextCases.pascalCase,
+    TextCases.pathCase,
+    TextCases.sentenceCase,
+    TextCases.snakeCase,
 ];
 
 export const DATE_TYPES = [
-    { value: '0', label: 'toString' },
-    { value: '1', label: 'toISOString' },
-    { value: '2', label: 'toDateString' },
-    { value: '3', label: 'toTimeString' },
-    { value: '4', label: 'toUTCString' },
-    { value: '5', label: 'toLocaleTimeString' },
-    { value: '6', label: 'toLocaleDateString' },
-    { value: '7', label: 'toLocaleString' },
+    { value: DateTypes.toString, label: 'String' },
+    { value: DateTypes.toISOString, label: 'ISO String' },
+    { value: DateTypes.toDateString, label: 'Date String' },
+    { value: DateTypes.toTimeString, label: 'Time String' },
+    { value: DateTypes.toUTCString, label: 'UTC String' },
+    { value: DateTypes.toLocaleTimeString, label: 'Locale Time String' },
+    { value: DateTypes.toLocaleDateString, label: 'Locale Date String' },
+    { value: DateTypes.toLocaleString, label: 'Locale String' },
 ];

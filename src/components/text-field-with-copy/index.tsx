@@ -18,7 +18,7 @@ const TextFieldWithCopy = ({ value, setValue, placeHolder = '' }: ITextFieldWith
     return (
         <TextInput
             placeholder={placeHolder}
-            maw={250}
+            miw={250}
             value={value}
             onChange={handleChange}
             rightSection={

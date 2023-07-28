@@ -2,7 +2,7 @@ import { Button, Flex, Select, SimpleGrid } from '@mantine/core';
 import * as changeCase from 'change-case';
 import { useState } from 'react';
 import { TextFieldWithCopy } from '../../components';
-import { DATE_TYPES, TEXT_CASES } from '../../constants';
+import { DateTypes, DATE_TYPES, TextCases, TEXT_CASES } from '../../constants';
 
 const GetPublicIpComponent = () => {
     const [ip, setIp] = useState('');
@@ -45,7 +45,7 @@ const GetTimestampComponent = () => {
 const ConvertTimestampComponent = () => {
     const [ts, setTs] = useState('');
     const [convertedTs, setConvertedTs] = useState('');
-    const [tsType, setTsType] = useState<string | null>(null);
+    const [tsType, setTsType] = useState<DateTypes>(DateTypes.toString);
 
     const get_time_value = (timestamp: any) => {
         let date = new Date(+timestamp).toString();
@@ -57,28 +57,28 @@ const ConvertTimestampComponent = () => {
         const timeString = get_time_value(ts);
 
         switch (tsType) {
-            case DATE_TYPES[0].value:
+            case DateTypes.toString:
                 currentText = new Date(timeString).toString();
                 break;
-            case DATE_TYPES[1].value:
+            case DateTypes.toISOString:
                 currentText = new Date(timeString).toISOString();
                 break;
-            case DATE_TYPES[2].value:
+            case DateTypes.toDateString:
                 currentText = new Date(timeString).toDateString();
                 break;
-            case DATE_TYPES[3].value:
+            case DateTypes.toTimeString:
                 currentText = new Date(timeString).toTimeString();
                 break;
-            case DATE_TYPES[4].value:
+            case DateTypes.toUTCString:
                 currentText = new Date(timeString).toUTCString();
                 break;
-            case DATE_TYPES[5].value:
+            case DateTypes.toLocaleTimeString:
                 currentText = new Date(timeString).toLocaleTimeString();
                 break;
-            case DATE_TYPES[6].value:
+            case DateTypes.toLocaleDateString:
                 currentText = new Date(timeString).toLocaleDateString();
                 break;
-            case DATE_TYPES[7].value:
+            case DateTypes.toLocaleString:
                 currentText = new Date(timeString).toLocaleString();
                 break;
             default:
@@ -92,7 +92,15 @@ const ConvertTimestampComponent = () => {
     return (
         <Flex mih={50} gap="sm" justify="center" align="center" direction="column" wrap="wrap">
             <TextFieldWithCopy placeHolder="Timestamp" value={ts} setValue={setTs} />
-            <Select placeholder="Pick Conversion Type" data={DATE_TYPES} value={tsType} onChange={setTsType} />
+            <Select
+                miw={250}
+                placeholder="Pick Conversion Type"
+                data={DATE_TYPES}
+                value={tsType}
+                onChange={e => {
+                    setTsType(e as DateTypes);
+                }}
+            />
             <TextFieldWithCopy placeHolder="Human Readable Time" value={convertedTs} setValue={setConvertedTs} />
             <Button onClick={handleChangeTimestamp}>Convert</Button>
         </Flex>
@@ -102,49 +110,49 @@ const ConvertTimestampComponent = () => {
 const ChangeTextCaseComponent = () => {
     const [text, setText] = useState('');
     const [finalText, setFinalText] = useState('');
-    const [textCase, setCase] = useState<string | null>(null);
+    const [textCase, setCase] = useState<TextCases>(TextCases.lowerCase);
 
     const handleChangeCase = () => {
         var currentText = '';
 
         switch (textCase) {
-            case TEXT_CASES[0].value:
+            case TextCases.lowerCase:
                 currentText = text.toLowerCase();
                 break;
-            case TEXT_CASES[1].value:
+            case TextCases.upperCase:
                 currentText = text.toUpperCase();
                 break;
-            case TEXT_CASES[2].value:
+            case TextCases.camelCase:
                 currentText = changeCase.camelCase(text);
                 break;
-            case TEXT_CASES[3].value:
+            case TextCases.capitalCase:
                 currentText = changeCase.capitalCase(text);
                 break;
-            case TEXT_CASES[4].value:
+            case TextCases.constantCase:
                 currentText = changeCase.constantCase(text);
                 break;
-            case TEXT_CASES[5].value:
+            case TextCases.dotCase:
                 currentText = changeCase.dotCase(text);
                 break;
-            case TEXT_CASES[6].value:
+            case TextCases.headerCase:
                 currentText = changeCase.headerCase(text);
                 break;
-            case TEXT_CASES[7].value:
+            case TextCases.noCase:
                 currentText = changeCase.noCase(text);
                 break;
-            case TEXT_CASES[8].value:
+            case TextCases.paramCase:
                 currentText = changeCase.paramCase(text);
                 break;
-            case TEXT_CASES[9].value:
+            case TextCases.pascalCase:
                 currentText = changeCase.pascalCase(text);
                 break;
-            case TEXT_CASES[10].value:
+            case TextCases.pathCase:
                 currentText = changeCase.pathCase(text);
                 break;
-            case TEXT_CASES[11].value:
+            case TextCases.sentenceCase:
                 currentText = changeCase.sentenceCase(text);
                 break;
-            case TEXT_CASES[12].value:
+            case TextCases.snakeCase:
                 currentText = changeCase.snakeCase(text);
                 break;
             default:
@@ -158,7 +166,15 @@ const ChangeTextCaseComponent = () => {
     return (
         <Flex mih={50} gap="sm" justify="center" align="center" direction="column" wrap="wrap">
             <TextFieldWithCopy placeHolder="Text" value={text} setValue={setText} />
-            <Select placeholder="Pick Conversion Type" data={TEXT_CASES} value={textCase} onChange={setCase} />
+            <Select
+                miw={250}
+                placeholder="Pick Conversion Type"
+                data={TEXT_CASES}
+                value={textCase}
+                onChange={e => {
+                    setCase(e as TextCases);
+                }}
+            />
             <TextFieldWithCopy placeHolder="Converted Text" value={finalText} setValue={setFinalText} />
             <Button onClick={handleChangeCase}>Convert</Button>
         </Flex>
