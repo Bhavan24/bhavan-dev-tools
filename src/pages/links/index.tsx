@@ -13,19 +13,20 @@ const ENVIRONMENTS = [Environments.DEV, Environments.QA, Environments.PRE_PROD, 
 const Links = () => {
     const [value, setValue] = useState<any>(Environments.DEV);
 
-    const GcpBaseURL = `https://console.cloud.google.com/welcome?project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GcpStorageURL = `https://console.cloud.google.com/storage/browser?referrer=search&project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GcpWorkloadsURL = `https://console.cloud.google.com/kubernetes/workload/overview?project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GcpBuildsURL = `https://console.cloud.google.com/cloud-build/builds?project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GcpArtifactsURL = `https://console.cloud.google.com/artifacts?referrer=search&project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GcpSqlURL = `https://console.cloud.google.com/sql/instances?project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GcpCdnURL = `https://console.cloud.google.com/net-services/cdn/list?project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GcpIamURL = `https://console.cloud.google.com/iam-admin/iam?project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const KayaAdminURL = `https://admin-portal-web.${value}.kayatech.com`;
-    const KayaCoreWebURL = `https://${value}.kayatech.com`;
-    const KayaTestCoreWebURL = `https://test-web.${value}.kayatech.com`;
-    const KayApolloURL = `https://apollo-gateway.${value}.kayatech.com/graphql`;
-    const KeycloakURL = `https://idp.${value}.kayatech.com/auth`;
+    const GCP_BASE_URL = `https://console.cloud.google.com/welcome?project=kaya-workloads-${value}-389715&supportedpurview=project`;
+    const GCP_STORAGE_URL = `https://console.cloud.google.com/storage/browser?referrer=search&project=kaya-workloads-${value}-389715&supportedpurview=project`;
+    const GCP_WORKLOADS_URL = `https://console.cloud.google.com/kubernetes/workload/overview?project=kaya-workloads-${value}-389715&supportedpurview=project`;
+    const GCP_BUILDS_URL = `https://console.cloud.google.com/cloud-build/builds?project=kaya-workloads-${value}-389715&supportedpurview=project`;
+    const GCP_ARTIFACTS_URL = `https://console.cloud.google.com/artifacts?referrer=search&project=kaya-workloads-${value}-389715&supportedpurview=project`;
+    const GCP_SQL_URL = `https://console.cloud.google.com/sql/instances?project=kaya-workloads-${value}-389715&supportedpurview=project`;
+    const GCP_CDN_URL = `https://console.cloud.google.com/net-services/cdn/list?project=kaya-workloads-${value}-389715&supportedpurview=project`;
+    const GCP_IAM_URL = `https://console.cloud.google.com/iam-admin/iam?project=kaya-workloads-${value}-389715&supportedpurview=project`;
+    const GCP_CF_URL = `https://console.cloud.google.com/functions/list?referrer=search&project=kaya-workloads-${value}-389715&supportedpurview=project`;
+    const KAYA_ADMIN_URL = `https://admin-portal-web.${value}.kayatech.com`;
+    const KAYA_CORE_WEB_URL = `https://${value}.kayatech.com`;
+    const KAYA_TEST_CORE_WEB_URL = `https://test-web.${value}.kayatech.com`;
+    const KAY_APOLLO_URL = `https://apollo-gateway.${value}.kayatech.com/graphql`;
+    const KEYCLOAK_URL = `https://idp.${value}.kayatech.com/auth`;
 
     return (
         <div style={{ margin: '10px' }}>
@@ -38,44 +39,47 @@ const Links = () => {
                 data={ENVIRONMENTS}
             />
             <SimpleGrid cols={2} my={10}>
-                <Anchor href={GcpBaseURL} target="_blank">
-                    Gcp Base URL
+                <Anchor href={GCP_BASE_URL} target="_blank">
+                    Base URL
                 </Anchor>
-                <Anchor href={GcpStorageURL} target="_blank">
-                    Gcp Storage URL
+                <Anchor href={GCP_STORAGE_URL} target="_blank">
+                    Storage URL
                 </Anchor>
-                <Anchor href={GcpWorkloadsURL} target="_blank">
-                    Gcp Base URL
+                <Anchor href={GCP_WORKLOADS_URL} target="_blank">
+                    Workloads URL
                 </Anchor>
-                <Anchor href={GcpBuildsURL} target="_blank">
-                    Gcp Builds Url
+                <Anchor href={GCP_BUILDS_URL} target="_blank">
+                    Builds Url
                 </Anchor>
-                <Anchor href={GcpArtifactsURL} target="_blank">
-                    Gcp Artifacts Url
+                <Anchor href={GCP_ARTIFACTS_URL} target="_blank">
+                    Artifacts Url
                 </Anchor>
-                <Anchor href={GcpSqlURL} target="_blank">
-                    Gcp SQL URL
+                <Anchor href={GCP_SQL_URL} target="_blank">
+                    SQL URL
                 </Anchor>
-                <Anchor href={GcpCdnURL} target="_blank">
-                    Gcp CDN URL
+                <Anchor href={GCP_CDN_URL} target="_blank">
+                    CDN URL
                 </Anchor>
-                <Anchor href={GcpIamURL} target="_blank">
-                    Gcp IAM URL
+                <Anchor href={GCP_IAM_URL} target="_blank">
+                    IAM URL
                 </Anchor>
-                <Anchor href={KayaAdminURL} target="_blank">
+                <Anchor href={GCP_CF_URL} target="_blank">
+                    Cloud Function URL
+                </Anchor>
+                <Anchor href={KAYA_ADMIN_URL} target="_blank">
                     Kaya Admin URL
                 </Anchor>
-                <Anchor href={KayaCoreWebURL} target="_blank">
+                <Anchor href={KAYA_CORE_WEB_URL} target="_blank">
                     Kaya Core Web URL
                 </Anchor>
-                <Anchor href={KayaTestCoreWebURL} target="_blank">
+                <Anchor href={KAYA_TEST_CORE_WEB_URL} target="_blank">
                     Kaya Test Core Web URL
                 </Anchor>
-                <Anchor href={KayApolloURL} target="_blank">
+                <Anchor href={KAY_APOLLO_URL} target="_blank">
                     Kaya Apollo URL
                 </Anchor>
-                <Anchor href={KeycloakURL} target="_blank">
-                    Keycloak URL
+                <Anchor href={KEYCLOAK_URL} target="_blank">
+                    Kaya Keycloak URL
                 </Anchor>
             </SimpleGrid>
         </div>
