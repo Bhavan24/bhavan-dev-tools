@@ -93,7 +93,7 @@ const ConvertTimestampComponent = () => {
         <Flex mih={50} gap="sm" justify="center" align="center" direction="column" wrap="wrap">
             <TextFieldWithCopy placeHolder="Timestamp" value={ts} setValue={setTs} />
             <Select
-                miw={250}
+                miw={350}
                 placeholder="Pick Conversion Type"
                 data={DATE_TYPES}
                 value={tsType}
@@ -167,7 +167,7 @@ const ChangeTextCaseComponent = () => {
         <Flex mih={50} gap="sm" justify="center" align="center" direction="column" wrap="wrap">
             <TextFieldWithCopy placeHolder="Text" value={text} setValue={setText} />
             <Select
-                miw={250}
+                miw={350}
                 placeholder="Pick Conversion Type"
                 data={TEXT_CASES}
                 value={textCase}

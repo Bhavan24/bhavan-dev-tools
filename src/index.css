@@ -19,6 +19,7 @@
 
 body {
     margin: 0;
-    min-width: 600px;
+    min-width: 800px;
     min-height: 100vh;
+    border-style: groove;
 }
