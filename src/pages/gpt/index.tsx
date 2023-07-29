@@ -57,6 +57,7 @@ const Gpt = () => {
             <Textarea
                 w="100%"
                 m={5}
+                minRows={2}
                 placeholder="Provide short prompt"
                 label="Prompt"
                 value={prompt}
@@ -64,7 +65,7 @@ const Gpt = () => {
                     setPrompt(e.target.value);
                 }}
                 rightSection={
-                    <div>
+                    <Flex gap="sm" justify="space-between" align="center" direction="row" wrap="wrap" h="100%">
                         <SpeechToText
                             onChange={(text: any) => {
                                 setPrompt(text);
@@ -73,7 +74,7 @@ const Gpt = () => {
                         <ActionIcon onClick={askQuery} loading={submitting}>
                             <Icons.RiSendPlaneFill />
                         </ActionIcon>
-                    </div>
+                    </Flex>
                 }
                 withAsterisk
             />

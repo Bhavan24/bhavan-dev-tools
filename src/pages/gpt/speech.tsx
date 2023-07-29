@@ -1,8 +1,8 @@
 import { ActionIcon } from '@mantine/core';
 import { useEffect } from 'react';
 import * as Icons from 'react-icons/ri';
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import 'regenerator-runtime/runtime';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 const SpeechToText = ({ onChange }: any) => {
     const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
