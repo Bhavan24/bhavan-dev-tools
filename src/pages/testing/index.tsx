@@ -100,6 +100,13 @@ const Testing = () => {
                     <>
                         <SimpleGrid cols={2}>
                             <div>
+                                <TestDataField
+                                    multiline={false}
+                                    fieldName={'Name Prefix'}
+                                    fieldData={data.name_prefix}
+                                />
+                            </div>
+                            <div>
                                 <TestDataField multiline={false} fieldName={'Name'} fieldData={data.name} />
                             </div>
                             <div>
@@ -107,13 +114,6 @@ const Testing = () => {
                             </div>
                             <div>
                                 <TestDataField multiline={false} fieldName={'Last Name'} fieldData={data.last} />
-                            </div>
-                            <div>
-                                <TestDataField
-                                    multiline={false}
-                                    fieldName={'Name Prefix'}
-                                    fieldData={data.name_prefix}
-                                />
                             </div>
                             <div>
                                 <TestDataField

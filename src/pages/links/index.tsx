@@ -1,5 +1,6 @@
-import { Anchor, Select, SimpleGrid } from '@mantine/core';
+import { Button, Select, SimpleGrid } from '@mantine/core';
 import { useState } from 'react';
+import { FiExternalLink } from 'react-icons/fi';
 
 enum Environments {
     DEV = 'dev',
@@ -9,6 +10,14 @@ enum Environments {
 }
 
 const ENVIRONMENTS = [Environments.DEV, Environments.QA, Environments.PRE_PROD, Environments.PROD];
+
+const ExternalLink = ({ link, text }: any) => {
+    return (
+        <Button component="a" href={link} target="_blank" variant="outline" leftIcon={<FiExternalLink />}>
+            {text}
+        </Button>
+    );
+};
 
 const Links = () => {
     const [value, setValue] = useState<any>(Environments.DEV);
@@ -39,48 +48,20 @@ const Links = () => {
                 data={ENVIRONMENTS}
             />
             <SimpleGrid cols={2} my={10}>
-                <Anchor href={GCP_BASE_URL} target="_blank">
-                    Base URL
-                </Anchor>
-                <Anchor href={GCP_STORAGE_URL} target="_blank">
-                    Storage URL
-                </Anchor>
-                <Anchor href={GCP_WORKLOADS_URL} target="_blank">
-                    Workloads URL
-                </Anchor>
-                <Anchor href={GCP_BUILDS_URL} target="_blank">
-                    Builds Url
-                </Anchor>
-                <Anchor href={GCP_ARTIFACTS_URL} target="_blank">
-                    Artifacts Url
-                </Anchor>
-                <Anchor href={GCP_SQL_URL} target="_blank">
-                    SQL URL
-                </Anchor>
-                <Anchor href={GCP_CDN_URL} target="_blank">
-                    CDN URL
-                </Anchor>
-                <Anchor href={GCP_IAM_URL} target="_blank">
-                    IAM URL
-                </Anchor>
-                <Anchor href={GCP_CF_URL} target="_blank">
-                    Cloud Function URL
-                </Anchor>
-                <Anchor href={KAYA_ADMIN_URL} target="_blank">
-                    Kaya Admin URL
-                </Anchor>
-                <Anchor href={KAYA_CORE_WEB_URL} target="_blank">
-                    Kaya Core Web URL
-                </Anchor>
-                <Anchor href={KAYA_TEST_CORE_WEB_URL} target="_blank">
-                    Kaya Test Core Web URL
-                </Anchor>
-                <Anchor href={KAY_APOLLO_URL} target="_blank">
-                    Kaya Apollo URL
-                </Anchor>
-                <Anchor href={KEYCLOAK_URL} target="_blank">
-                    Kaya Keycloak URL
-                </Anchor>
+                <ExternalLink link={GCP_BASE_URL} text={'Welcome Page'} />
+                <ExternalLink link={GCP_STORAGE_URL} text={'Cloud Storage'} />
+                <ExternalLink link={GCP_WORKLOADS_URL} text={'Workloads'} />
+                <ExternalLink link={GCP_BUILDS_URL} text={'Cloud Build'} />
+                <ExternalLink link={GCP_ARTIFACTS_URL} text={'Artifacts'} />
+                <ExternalLink link={GCP_SQL_URL} text={'Cloud SQL'} />
+                <ExternalLink link={GCP_CDN_URL} text={'Cloud CDN'} />
+                <ExternalLink link={GCP_IAM_URL} text={'GCP IAM'} />
+                <ExternalLink link={GCP_CF_URL} text={'Cloud Functions'} />
+                <ExternalLink link={KAYA_ADMIN_URL} text={'Kaya Admin'} />
+                <ExternalLink link={KAYA_CORE_WEB_URL} text={'Kaya Core Web'} />
+                <ExternalLink link={KAYA_TEST_CORE_WEB_URL} text={'Kaya Test Web'} />
+                <ExternalLink link={KAY_APOLLO_URL} text={'Kaya Apollo'} />
+                <ExternalLink link={KEYCLOAK_URL} text={'Keycloak'} />
             </SimpleGrid>
         </div>
     );

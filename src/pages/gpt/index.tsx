@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Flex, Textarea } from '@mantine/core';
+import { ActionIcon, Flex, Textarea } from '@mantine/core';
 import { Configuration, OpenAIApi } from 'openai';
 import { useCallback, useState } from 'react';
 import * as Icons from 'react-icons/ri';
@@ -49,10 +49,7 @@ const Gpt = () => {
     };
 
     return (
-        <Flex gap="sm" justify="center" align="center" direction="column" wrap="wrap" m={5}>
-            <Button loading={submitting} w="50%" onClick={askQuery} p={5}>
-                Ask Query
-            </Button>
+        <Flex gap="sm" justify="center" align="center" direction="column" wrap="wrap" m={5} px={15}>
             <Textarea
                 w="100%"
                 m={5}
@@ -62,6 +59,11 @@ const Gpt = () => {
                 onChange={e => {
                     setPrompt(e.target.value);
                 }}
+                rightSection={
+                    <ActionIcon onClick={askQuery} loading={submitting}>
+                        <Icons.RiSendPlaneFill />
+                    </ActionIcon>
+                }
                 withAsterisk
             />
             <Textarea
