@@ -1,0 +1,13 @@
+{
+    "hosting": {
+        "site": "bhavan-dev-tools",
+        "public": "output",
+        "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+        "rewrites": [
+            {
+                "source": "**",
+                "destination": "/index.html"
+            }
+        ]
+    }
+}
