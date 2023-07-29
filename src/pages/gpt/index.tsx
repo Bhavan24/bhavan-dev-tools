@@ -3,6 +3,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { truncate } from 'lodash';
 import { useCallback, useState } from 'react';
 import * as Icons from 'react-icons/ri';
+import { SpeechToText } from './speech';
 import { getItem, openai, saveItem } from './utils';
 
 const Gpt = () => {
@@ -63,9 +64,16 @@ const Gpt = () => {
                     setPrompt(e.target.value);
                 }}
                 rightSection={
-                    <ActionIcon onClick={askQuery} loading={submitting}>
-                        <Icons.RiSendPlaneFill />
-                    </ActionIcon>
+                    <div>
+                        <SpeechToText
+                            onChange={(text: any) => {
+                                setPrompt(text);
+                            }}
+                        />
+                        <ActionIcon onClick={askQuery} loading={submitting}>
+                            <Icons.RiSendPlaneFill />
+                        </ActionIcon>
+                    </div>
                 }
                 withAsterisk
             />
