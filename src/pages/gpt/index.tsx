@@ -1,4 +1,5 @@
-import { ActionIcon, Flex, Textarea } from '@mantine/core';
+import { ActionIcon, Box, Button, Collapse, Flex, Group, List, Textarea } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { Configuration, OpenAIApi } from 'openai';
 import { useCallback, useState } from 'react';
 import * as Icons from 'react-icons/ri';
@@ -10,26 +11,48 @@ const configuration = new Configuration({
 });
 
 const openai = new OpenAIApi(configuration);
-console.log('openai');
+
+const KEY = 'openai-history';
+
+const saveItem = (item: any) => {
+    const existingList = getItem();
+    existingList.push(item);
+    localStorage.setItem(KEY, JSON.stringify(existingList));
+};
+
+const getItem = (): any[] => {
+    const existingList = localStorage.getItem(KEY);
+    return existingList ? JSON.parse(existingList) : [];
+};
 
 const Gpt = () => {
     const [prompt, setPrompt] = useState('');
     const [response, setResponse] = useState('');
     const [submitting, setSubmitting] = useState<boolean>(false);
+    const [opened, { toggle }] = useDisclosure(false);
 
     const askQuery = useCallback(() => {
         const openAiTest = async () => {
-            const { data } = await openai.createCompletion({
-                model: 'text-davinci-003',
-                prompt: prompt.trim(),
+            const newPrompt = prompt?.trim() || '';
+
+            const { data } = await openai.createChatCompletion({
+                model: 'gpt-3.5-turbo-16k',
+                messages: [{ role: 'user', content: newPrompt }],
                 max_tokens: 2048,
                 n: 1,
                 stop: '',
                 temperature: 0.5,
             });
 
-            const response = data.choices[0].text?.trim() || '';
+            const response = data.choices[0].message?.content?.trim() || '';
             setResponse(response);
+
+            const history = {
+                prompt: newPrompt,
+                response: response,
+            };
+
+            saveItem(history);
         };
 
         setSubmitting(true);
@@ -70,7 +93,7 @@ const Gpt = () => {
                 w="100%"
                 m={5}
                 value={response}
-                minRows={4}
+                minRows={10}
                 onChange={e => {
                     setResponse(e.target.value);
                 }}
@@ -81,8 +104,38 @@ const Gpt = () => {
                     </ActionIcon>
                 }
             />
+
+            <Box maw={600} mx="auto">
+                <Group position="center" mb={5}>
+                    <Button variant="subtle" compact onClick={toggle}>
+                        View History
+                    </Button>
+                </Group>
+
+                <Collapse in={opened}>
+                    <List>
+                        {getItem().map(({ prompt, response }) => (
+                            <List.Item>
+                                <div style={{ display: 'flex' }}>
+                                    <span>{prompt}</span>
+                                    <ActionIcon
+                                        variant="transparent"
+                                        onClick={() => {
+                                            setPrompt(prompt);
+                                            setResponse(response);
+                                        }}
+                                    >
+                                        <Icons.RiUploadLine />
+                                    </ActionIcon>
+                                </div>
+                            </List.Item>
+                        ))}
+                    </List>
+                </Collapse>
+            </Box>
         </Flex>
     );
 };
 
 export { Gpt };
+
