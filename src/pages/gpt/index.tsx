@@ -1,29 +1,9 @@
 import { ActionIcon, Box, Button, Collapse, Flex, Group, List, Textarea } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { Configuration, OpenAIApi } from 'openai';
+import { truncate } from 'lodash';
 import { useCallback, useState } from 'react';
 import * as Icons from 'react-icons/ri';
-
-export const apiKey = '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';
-
-const configuration = new Configuration({
-    apiKey,
-});
-
-const openai = new OpenAIApi(configuration);
-
-const KEY = 'openai-history';
-
-const saveItem = (item: any) => {
-    const existingList = getItem();
-    existingList.push(item);
-    localStorage.setItem(KEY, JSON.stringify(existingList));
-};
-
-const getItem = (): any[] => {
-    const existingList = localStorage.getItem(KEY);
-    return existingList ? JSON.parse(existingList) : [];
-};
+import { getItem, openai, saveItem } from './utils';
 
 const Gpt = () => {
     const [prompt, setPrompt] = useState('');
@@ -117,7 +97,7 @@ const Gpt = () => {
                         {getItem().map(({ prompt, response }) => (
                             <List.Item>
                                 <div style={{ display: 'flex' }}>
-                                    <span>{prompt}</span>
+                                    <span title={prompt}>{truncate(prompt, { length: 50 })}</span>
                                     <ActionIcon
                                         variant="transparent"
                                         onClick={() => {
@@ -138,4 +118,3 @@ const Gpt = () => {
 };
 
 export { Gpt };
-
