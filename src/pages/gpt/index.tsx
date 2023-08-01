@@ -57,6 +57,9 @@ const Gpt = () => {
             <Textarea
                 w="100%"
                 m={5}
+                autosize
+                autoComplete="on"
+                autoCorrect="on"
                 minRows={2}
                 placeholder="Provide short prompt"
                 label="Prompt"
@@ -81,6 +84,7 @@ const Gpt = () => {
             <Textarea
                 w="100%"
                 m={5}
+                autosize
                 value={response}
                 minRows={10}
                 onChange={e => {
