@@ -6,7 +6,7 @@ enum Environments {
     DEV = 'dev',
     QA = 'qa',
     PRE_PROD = 'pre-prod',
-    PROD = 'app',
+    PROD = 'prod',
 }
 
 const ENVIRONMENTS = [Environments.DEV, Environments.QA, Environments.PRE_PROD, Environments.PROD];
@@ -22,6 +22,8 @@ const ExternalLink = ({ link, text }: any) => {
 const Links = () => {
     const [value, setValue] = useState<any>(Environments.DEV);
 
+    const appValue = value === Environments.PROD ? 'app' : value;
+
     const GCP_BASE_URL = `https://console.cloud.google.com/welcome?project=kaya-workloads-${value}-389715&supportedpurview=project`;
     const GCP_STORAGE_URL = `https://console.cloud.google.com/storage/browser?referrer=search&project=kaya-workloads-${value}-389715&supportedpurview=project`;
     const GCP_WORKLOADS_URL = `https://console.cloud.google.com/kubernetes/workload/overview?project=kaya-workloads-${value}-389715&supportedpurview=project`;
@@ -31,11 +33,11 @@ const Links = () => {
     const GCP_CDN_URL = `https://console.cloud.google.com/net-services/cdn/list?project=kaya-workloads-${value}-389715&supportedpurview=project`;
     const GCP_IAM_URL = `https://console.cloud.google.com/iam-admin/iam?project=kaya-workloads-${value}-389715&supportedpurview=project`;
     const GCP_CF_URL = `https://console.cloud.google.com/functions/list?referrer=search&project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const KAYA_ADMIN_URL = `https://admin-portal-web.${value}.kayatech.com`;
-    const KAYA_CORE_WEB_URL = `https://${value}.kayatech.com`;
-    const KAYA_TEST_CORE_WEB_URL = `https://test-web.${value}.kayatech.com`;
-    const KAY_APOLLO_URL = `https://apollo-gateway.${value}.kayatech.com/graphql`;
-    const KEYCLOAK_URL = `https://idp.${value}.kayatech.com/auth`;
+    const KAYA_ADMIN_URL = `https://admin-portal-web.${appValue}.kayatech.com`;
+    const KAYA_CORE_WEB_URL = `https://${appValue}.kayatech.com`;
+    const KAYA_TEST_CORE_WEB_URL = `https://test-web.${appValue}.kayatech.com`;
+    const KAY_APOLLO_URL = `https://apollo-gateway.${appValue}.kayatech.com/graphql`;
+    const KEYCLOAK_URL = `https://idp.${appValue}.kayatech.com/auth`;
 
     return (
         <div style={{ margin: '10px' }}>
