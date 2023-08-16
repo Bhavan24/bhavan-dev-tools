@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from 'openai';
 
 const KEY = 'openai-history';
-const apiKey = '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';
+const apiKey = localStorage.getItem('GPT_API_KEY') || '';
 
 const configuration = new Configuration({
     apiKey,

@@ -1,16 +1,17 @@
-import { ActionIcon, Box, Button, Collapse, Flex, Group, List, Textarea } from '@mantine/core';
+import { ActionIcon, Box, Button, Collapse, Dialog, Flex, Group, List, Textarea, TextInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { truncate } from 'lodash';
 import { useCallback, useState } from 'react';
 import * as Icons from 'react-icons/ri';
-import { SpeechToText } from './speech';
 import { getItem, openai, saveItem } from './utils';
 
 const Gpt = () => {
+    const [apiKey, setApiKey] = useState('');
     const [prompt, setPrompt] = useState('');
     const [response, setResponse] = useState('');
     const [submitting, setSubmitting] = useState<boolean>(false);
     const [opened, { toggle }] = useDisclosure(false);
+    const [dialogOpened, { toggle: dialogToggle, close: closeDialog }] = useDisclosure(false);
 
     const askQuery = useCallback(() => {
         const openAiTest = async () => {
@@ -69,11 +70,11 @@ const Gpt = () => {
                 }}
                 rightSection={
                     <Flex gap="sm" justify="space-between" align="center" direction="row" wrap="wrap" h="100%">
-                        <SpeechToText
+                        {/* <SpeechToText
                             onChange={(text: any) => {
                                 setPrompt(text);
                             }}
-                        />
+                        /> */}
                         <ActionIcon onClick={askQuery} loading={submitting}>
                             <Icons.RiSendPlaneFill />
                         </ActionIcon>
@@ -98,10 +99,13 @@ const Gpt = () => {
                 }
             />
 
-            <Box maw={600} mx="auto">
+            <Box w="100%" mx="auto">
                 <Group position="center" mb={5}>
                     <Button variant="subtle" compact onClick={toggle}>
                         View History
+                    </Button>
+                    <Button variant="filled" compact onClick={dialogToggle}>
+                        Save API key
                     </Button>
                 </Group>
 
@@ -110,7 +114,7 @@ const Gpt = () => {
                         {getItem().map(({ prompt, response }) => (
                             <List.Item>
                                 <div style={{ display: 'flex' }}>
-                                    <span title={prompt}>{truncate(prompt, { length: 50 })}</span>
+                                    <span title={prompt}>{truncate(prompt, { length: 60 })}</span>
                                     <ActionIcon
                                         variant="transparent"
                                         onClick={() => {
@@ -126,6 +130,29 @@ const Gpt = () => {
                     </List>
                 </Collapse>
             </Box>
+
+            <Dialog opened={dialogOpened} withCloseButton onClose={closeDialog} size="lg" radius="md">
+                <p>Provide your API key</p>
+                <Group align="flex-end">
+                    <TextInput
+                        value={apiKey}
+                        onChange={e => {
+                            setApiKey(e.target.value);
+                        }}
+                        placeholder="Chat GPT key"
+                        sx={{ flex: 1 }}
+                    />
+                    <Button
+                        onClick={() => {
+                            localStorage.setItem('GPT_API_KEY', apiKey);
+                            closeDialog();
+                            window.location.reload();
+                        }}
+                    >
+                        Save
+                    </Button>
+                </Group>
+            </Dialog>
         </Flex>
     );
 };

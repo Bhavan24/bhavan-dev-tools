@@ -14,7 +14,7 @@ const Code = () => {
             <JsonInput
                 value={jsonValue}
                 onChange={setJsonValue}
-                label="Provide your JSON"
+                label="Provide your JSON to format"
                 placeholder=""
                 validationError="Invalid JSON"
                 formatOnBlur

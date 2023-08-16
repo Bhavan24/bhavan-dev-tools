@@ -1,4 +1,4 @@
-import { Tabs } from '@mantine/core';
+import { Avatar, Badge, Flex, Tabs } from '@mantine/core';
 import * as Icons from 'react-icons/ri';
 import { Code, Gpt, Links, Testing, Utility } from './pages';
 
@@ -44,6 +44,28 @@ function App() {
                     <Links />
                 </Tabs.Panel>
             </Tabs>
+            <Flex justify="center" m={5}>
+                <Badge
+                    style={{ cursor: 'pointer' }}
+                    pl={0}
+                    size="lg"
+                    color="blue"
+                    radius="xl"
+                    onClick={() => {
+                        window.open('https://www.linkedin.com/in/bhavan24/', '_blank');
+                    }}
+                    leftSection={
+                        <Avatar
+                            alt="Avatar for badge"
+                            size={24}
+                            mr={5}
+                            src="https://avatars.githubusercontent.com/u/68679905?v=4"
+                        />
+                    }
+                >
+                    @Dev: Bhavan
+                </Badge>
+            </Flex>
         </div>
     );
 }
