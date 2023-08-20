@@ -1,8 +1,50 @@
-import { Button, Flex, Select, SimpleGrid } from '@mantine/core';
+import { Button, ColorPicker, Flex, Select, SimpleGrid, Textarea } from '@mantine/core';
 import * as changeCase from 'change-case';
 import { useState } from 'react';
 import { TextFieldWithCopy } from '../../components';
 import { DateTypes, DATE_TYPES, TextCases, TEXT_CASES } from '../../constants';
+
+const GetLengthCheckerComponent = () => {
+    const [text, setText] = useState('');
+
+    return (
+        <Flex mih={50} gap="sm" justify="center" align="center" direction="column" wrap="wrap">
+            <Textarea
+                w="90%"
+                autosize
+                minRows={10}
+                maxRows={10}
+                value={text}
+                onChange={e => {
+                    setText(e.target.value);
+                }}
+            />
+            <span>Length: {text.length}</span>
+        </Flex>
+    );
+};
+
+const GetColorPickerComponent = () => {
+    const formats = ['hex', 'hexa', 'rgba', 'rgb', 'hsl', 'hsla'];
+    const [colorFormat, setColorFormat] = useState<any>('rgba');
+    const [value, onChange] = useState('');
+
+    return (
+        <Flex mih={50} gap="sm" justify="center" align="center" direction="column" wrap="wrap">
+            <ColorPicker format={colorFormat} value={value} onChange={onChange} />
+            <Select
+                miw={350}
+                placeholder="Pick Color Format"
+                data={formats}
+                value={colorFormat}
+                onChange={e => {
+                    setColorFormat(String(e));
+                }}
+            />
+            <TextFieldWithCopy value={value} setValue={onChange} />
+        </Flex>
+    );
+};
 
 const GetPublicIpComponent = () => {
     const [ip, setIp] = useState('');
@@ -188,8 +230,11 @@ const Utility = () => {
             <GetTimestampComponent />
             <ChangeTextCaseComponent />
             <ConvertTimestampComponent />
+            <GetLengthCheckerComponent />
+            <GetColorPickerComponent />
         </SimpleGrid>
     );
 };
 
 export { Utility };
+
