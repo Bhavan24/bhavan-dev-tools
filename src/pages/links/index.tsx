@@ -51,6 +51,7 @@ const Links = () => {
     const GCP_CDN_URL = `https://console.cloud.google.com/net-services/cdn/list?project=${gcpProject}&supportedpurview=project`;
     const GCP_IAM_URL = `https://console.cloud.google.com/iam-admin/iam?project=${gcpProject}&supportedpurview=project`;
     const GCP_CF_URL = `https://console.cloud.google.com/functions/list?referrer=search&project=${gcpProject}&supportedpurview=project`;
+    const GCP_CR_URL = `https://console.cloud.google.com/run?project=${gcpProject}&supportedpurview=project`;
 
     return (
         <div style={{ margin: '10px' }}>
@@ -79,6 +80,7 @@ const Links = () => {
                 <ExternalLink link={GCP_CDN_URL} text={'Cloud CDN'} />
                 <ExternalLink link={GCP_IAM_URL} text={'GCP IAM'} />
                 <ExternalLink link={GCP_CF_URL} text={'Cloud Functions'} />
+                <ExternalLink link={GCP_CR_URL} text={'Cloud Run'} />
                 <ExternalLink link={GCP_BASE_URL} text={'Welcome Page'} />
             </SimpleGrid>
             <Divider my="md" size="md" label="KAYA" labelPosition="center" />
