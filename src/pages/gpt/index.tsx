@@ -1,13 +1,27 @@
-import { ActionIcon, Box, Button, Collapse, Dialog, Flex, Group, List, Textarea, TextInput } from '@mantine/core';
+import {
+    ActionIcon,
+    Box,
+    Button,
+    Collapse,
+    Dialog,
+    Flex,
+    Group,
+    List,
+    Select,
+    Textarea,
+    TextInput,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { truncate } from 'lodash';
 import { useCallback, useState } from 'react';
 import * as Icons from 'react-icons/ri';
+import { GPT_MODELS, DateTypes } from '../../constants';
 import { getItem, openai, saveItem } from './utils';
 
 const Gpt = () => {
     const [apiKey, setApiKey] = useState('');
     const [prompt, setPrompt] = useState('');
+    const [model, setModel] = useState(GPT_MODELS[0]);
     const [response, setResponse] = useState('');
     const [submitting, setSubmitting] = useState<boolean>(false);
     const [opened, { toggle }] = useDisclosure(false);
@@ -18,7 +32,7 @@ const Gpt = () => {
             const newPrompt = prompt?.trim() || '';
 
             const { data } = await openai.createChatCompletion({
-                model: 'gpt-3.5-turbo-16k',
+                model,
                 messages: [{ role: 'user', content: newPrompt }],
                 max_tokens: 2048,
                 n: 1,
@@ -47,7 +61,7 @@ const Gpt = () => {
             console.log(error);
             setSubmitting(false);
         }
-    }, [prompt]);
+    }, [prompt, model]);
 
     const handleClick = () => {
         navigator.clipboard.writeText(response);
@@ -55,6 +69,17 @@ const Gpt = () => {
 
     return (
         <Flex gap="sm" justify="center" align="center" direction="column" wrap="wrap" m={5} px={15}>
+            <Select
+                required
+                label="Model"
+                w="100%"
+                placeholder="Pick Conversion Type"
+                data={GPT_MODELS}
+                value={model}
+                onChange={e => {
+                    e && setModel(String(e));
+                }}
+            />
             <Textarea
                 w="100%"
                 m={5}
