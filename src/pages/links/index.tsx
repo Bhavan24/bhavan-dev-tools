@@ -1,4 +1,4 @@
-import { Button, Select, SimpleGrid } from '@mantine/core';
+import { Button, Divider, Select, SimpleGrid } from '@mantine/core';
 import { useState } from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 
@@ -11,6 +11,18 @@ enum Environments {
 
 const ENVIRONMENTS = [Environments.DEV, Environments.QA, Environments.PRE_PROD, Environments.PROD];
 
+const PROJECTS = [
+    'kaya-ai',
+    'kaya-workloads-dev-389715',
+    'kaya-workloads-qa-389715',
+    'kaya-workloads-pre-prod-389715',
+    'kaya-workloads-prod-389715',
+    'kaya-workloads-develop-389715',
+    'keth-test',
+    'sahas-test',
+    'kaya-ai-ml-test',
+];
+
 const ExternalLink = ({ link, text }: any) => {
     return (
         <Button component="a" href={link} target="_blank" variant="outline" leftIcon={<FiExternalLink />}>
@@ -20,37 +32,45 @@ const ExternalLink = ({ link, text }: any) => {
 };
 
 const Links = () => {
-    const [value, setValue] = useState<any>(Environments.DEV);
-
-    const appValue = value === Environments.PROD ? 'app' : value;
-
-    const GCP_BASE_URL = `https://console.cloud.google.com/welcome?project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GCP_STORAGE_URL = `https://console.cloud.google.com/storage/browser?referrer=search&project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GCP_WORKLOADS_URL = `https://console.cloud.google.com/kubernetes/workload/overview?project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GCP_BUILDS_URL = `https://console.cloud.google.com/cloud-build/builds?project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GCP_ARTIFACTS_URL = `https://console.cloud.google.com/artifacts?referrer=search&project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GCP_SQL_URL = `https://console.cloud.google.com/sql/instances?project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GCP_CDN_URL = `https://console.cloud.google.com/net-services/cdn/list?project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GCP_IAM_URL = `https://console.cloud.google.com/iam-admin/iam?project=kaya-workloads-${value}-389715&supportedpurview=project`;
-    const GCP_CF_URL = `https://console.cloud.google.com/functions/list?referrer=search&project=kaya-workloads-${value}-389715&supportedpurview=project`;
+    const [kayaValue, setKayaValue] = useState<string | null>(Environments.DEV);
+    const appValue = kayaValue === Environments.PROD ? 'app' : kayaValue;
     const KAYA_ADMIN_URL = `https://admin-portal-web.${appValue}.kayatech.com`;
     const KAYA_CORE_WEB_URL = `https://${appValue}.kayatech.com`;
     const KAYA_TEST_CORE_WEB_URL = `https://test-web.${appValue}.kayatech.com`;
     const KAY_APOLLO_URL = `https://apollo-gateway.${appValue}.kayatech.com/graphql`;
     const KEYCLOAK_URL = `https://idp.${appValue}.kayatech.com/auth`;
 
+    const [projects, setProjects] = useState<string[]>(PROJECTS);
+    const [gcpProject, setGCPProject] = useState<string>(PROJECTS[0]);
+    const GCP_BASE_URL = `https://console.cloud.google.com/welcome?project=${gcpProject}&supportedpurview=project`;
+    const GCP_STORAGE_URL = `https://console.cloud.google.com/storage/browser?referrer=search&project=${gcpProject}&supportedpurview=project`;
+    const GCP_WORKLOADS_URL = `https://console.cloud.google.com/kubernetes/workload/overview?project=${gcpProject}&supportedpurview=project`;
+    const GCP_BUILDS_URL = `https://console.cloud.google.com/cloud-build/builds?project=${gcpProject}&supportedpurview=project`;
+    const GCP_ARTIFACTS_URL = `https://console.cloud.google.com/artifacts?referrer=search&project=${gcpProject}&supportedpurview=project`;
+    const GCP_SQL_URL = `https://console.cloud.google.com/sql/instances?project=${gcpProject}&supportedpurview=project`;
+    const GCP_CDN_URL = `https://console.cloud.google.com/net-services/cdn/list?project=${gcpProject}&supportedpurview=project`;
+    const GCP_IAM_URL = `https://console.cloud.google.com/iam-admin/iam?project=${gcpProject}&supportedpurview=project`;
+    const GCP_CF_URL = `https://console.cloud.google.com/functions/list?referrer=search&project=${gcpProject}&supportedpurview=project`;
+
     return (
         <div style={{ margin: '10px' }}>
+            <Divider my="md" size="md" label="GCP" labelPosition="center" />
             <Select
-                label="Select Environment"
-                onChange={setValue}
-                value={value}
+                label="Select GCP Project"
+                searchable
+                onSearchChange={setGCPProject}
+                searchValue={gcpProject}
                 nothingFound="No options"
                 placeholder="Pick one"
-                data={ENVIRONMENTS}
+                data={projects}
+                creatable
+                getCreateLabel={query => `+ Create ${query}`}
+                onCreate={query => {
+                    setProjects(current => [...current, query]);
+                    return query;
+                }}
             />
             <SimpleGrid cols={2} my={10}>
-                <ExternalLink link={GCP_BASE_URL} text={'Welcome Page'} />
                 <ExternalLink link={GCP_STORAGE_URL} text={'Cloud Storage'} />
                 <ExternalLink link={GCP_WORKLOADS_URL} text={'Workloads'} />
                 <ExternalLink link={GCP_BUILDS_URL} text={'Cloud Build'} />
@@ -59,6 +79,18 @@ const Links = () => {
                 <ExternalLink link={GCP_CDN_URL} text={'Cloud CDN'} />
                 <ExternalLink link={GCP_IAM_URL} text={'GCP IAM'} />
                 <ExternalLink link={GCP_CF_URL} text={'Cloud Functions'} />
+                <ExternalLink link={GCP_BASE_URL} text={'Welcome Page'} />
+            </SimpleGrid>
+            <Divider my="md" size="md" label="KAYA" labelPosition="center" />
+            <Select
+                label="Select Environment"
+                onChange={setKayaValue}
+                value={kayaValue}
+                nothingFound="No options"
+                placeholder="Pick one"
+                data={ENVIRONMENTS}
+            />
+            <SimpleGrid cols={2} my={10}>
                 <ExternalLink link={KAYA_ADMIN_URL} text={'Kaya Admin'} />
                 <ExternalLink link={KAYA_CORE_WEB_URL} text={'Kaya Core Web'} />
                 <ExternalLink link={KAYA_TEST_CORE_WEB_URL} text={'Kaya Test Web'} />
