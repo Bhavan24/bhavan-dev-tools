@@ -3,21 +3,28 @@ import { useState } from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 
 enum Environments {
+    DEVELOP = 'develop',
     DEV = 'dev',
     QA = 'qa',
     PRE_PROD = 'pre-prod',
     PROD = 'prod',
 }
 
-const ENVIRONMENTS = [Environments.DEV, Environments.QA, Environments.PRE_PROD, Environments.PROD];
+const ENVIRONMENTS = [
+    Environments.DEVELOP,
+    Environments.DEV,
+    Environments.QA,
+    Environments.PRE_PROD,
+    Environments.PROD,
+];
 
 const PROJECTS = [
     'kaya-ai',
+    'kaya-workloads-dev-397311',
     'kaya-workloads-dev-389715',
     'kaya-workloads-qa-389715',
     'kaya-workloads-pre-prod-389715',
     'kaya-workloads-prod-389715',
-    'kaya-workloads-develop-389715',
     'keth-test',
     'sahas-test',
     'kaya-ai-ml-test',
@@ -52,6 +59,7 @@ const Links = () => {
     const GCP_IAM_URL = `https://console.cloud.google.com/iam-admin/iam?project=${gcpProject}&supportedpurview=project`;
     const GCP_CF_URL = `https://console.cloud.google.com/functions/list?referrer=search&project=${gcpProject}&supportedpurview=project`;
     const GCP_CR_URL = `https://console.cloud.google.com/run?project=${gcpProject}&supportedpurview=project`;
+    const GCP_FB_URL = `https://console.firebase.google.com/project/${gcpProject}/overview`;
 
     return (
         <div style={{ margin: '10px' }}>
@@ -81,6 +89,7 @@ const Links = () => {
                 <ExternalLink link={GCP_IAM_URL} text={'GCP IAM'} />
                 <ExternalLink link={GCP_CF_URL} text={'Cloud Functions'} />
                 <ExternalLink link={GCP_CR_URL} text={'Cloud Run'} />
+                <ExternalLink link={GCP_FB_URL} text={'Firebase'} />
                 <ExternalLink link={GCP_BASE_URL} text={'Welcome Page'} />
             </SimpleGrid>
             <Divider my="md" size="md" label="KAYA" labelPosition="center" />

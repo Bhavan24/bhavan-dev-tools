@@ -1,6 +1,6 @@
 import { Button, Flex, SimpleGrid, Tabs } from '@mantine/core';
 import { Chance } from 'chance';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TextFieldWithCopy } from '../../components';
 
 const test_data_tabs = [
@@ -92,6 +92,10 @@ const Testing = () => {
         e.preventDefault();
         setData(getFakeData(wordCount));
     };
+
+    useEffect(() => {
+        setData(getFakeData(50));
+    }, []);
 
     const getTestDataComponent = (id: number) => {
         switch (id) {

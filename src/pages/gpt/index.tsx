@@ -15,13 +15,14 @@ import { useDisclosure } from '@mantine/hooks';
 import { truncate } from 'lodash';
 import { useCallback, useState } from 'react';
 import * as Icons from 'react-icons/ri';
-import { GPT_MODELS, DateTypes } from '../../constants';
+import { GPT_MODELS, GPT_OPTIONS } from '../../constants';
 import { getItem, openai, saveItem } from './utils';
 
 const Gpt = () => {
     const [apiKey, setApiKey] = useState('');
     const [prompt, setPrompt] = useState('');
     const [model, setModel] = useState(GPT_MODELS[0]);
+    const [option, setOption] = useState(GPT_OPTIONS[0].value);
     const [response, setResponse] = useState('');
     const [submitting, setSubmitting] = useState<boolean>(false);
     const [opened, { toggle }] = useDisclosure(false);
@@ -80,6 +81,20 @@ const Gpt = () => {
                     e && setModel(String(e));
                 }}
             />
+            <Select
+                required
+                label="Option"
+                w="100%"
+                placeholder="Pick Option"
+                data={GPT_OPTIONS}
+                value={option}
+                onChange={e => {
+                    if (e) {
+                        setOption(e);
+                        setPrompt(prompt => `${e || ''} \n\n ${prompt}`);
+                    }
+                }}
+            />
             <Textarea
                 w="100%"
                 m={5}
@@ -123,7 +138,6 @@ const Gpt = () => {
                     </ActionIcon>
                 }
             />
-
             <Box w="100%" mx="auto">
                 <Group position="center" mb={5}>
                     <Button variant="subtle" compact onClick={toggle}>
@@ -155,7 +169,6 @@ const Gpt = () => {
                     </List>
                 </Collapse>
             </Box>
-
             <Dialog opened={dialogOpened} withCloseButton onClose={closeDialog} size="lg" radius="md">
                 <p>Provide your API key</p>
                 <Group align="flex-end">

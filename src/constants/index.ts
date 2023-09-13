@@ -112,3 +112,20 @@ export const GPT_MODELS = [
     'curie',
     'text-davinci-003',
 ];
+
+export const GPT_OPTIONS = [
+    { value: '', label: 'Default' },
+    { value: 'Translate the below sentence to ', label: 'Translate' },
+    { value: 'What is the meaning of', label: 'Find Meaning' },
+    { value: 'Paraphrase the below paragraph.', label: 'Paraphrase' },
+    { value: 'Simplify the below paragraph.', label: 'Simplify Complex Paragraph' },
+    { value: 'Write an essay on the below topic.', label: 'Write an essay' },
+    { value: 'Write an article on the below topic.', label: 'Write an article' },
+    { value: 'Add comments to the below code.', label: 'Add Code Comments' },
+    { value: 'Refactor the below code.', label: 'Refactor Code' },
+    { value: 'Explain the below code.', label: 'Explain Code' },
+    { value: 'Find the bugs in the below code.', label: 'Find Code Bugs' },
+    { value: 'Provide documentation for the below code.', label: 'Document Code' },
+    { value: 'Compile and run the below code.', label: 'Compile & Run Code' },
+    { value: 'Add unit test for the below code.', label: 'Add Unit Test' },
+];

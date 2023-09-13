@@ -19,7 +19,7 @@ const Code = () => {
                 validationError="Invalid JSON"
                 formatOnBlur
                 autosize
-                minRows={4}
+                minRows={20}
                 rightSection={
                     <ActionIcon variant="transparent" onClick={handleClick}>
                         <Icons.RiFileCopyLine />

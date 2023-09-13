@@ -44,7 +44,7 @@ function App() {
                     <Links />
                 </Tabs.Panel>
             </Tabs>
-            <Flex justify="center" m={5}>
+            <Flex justify="center" m={5} style={{ float: 'right', display: 'none' }}>
                 <Badge
                     style={{ cursor: 'pointer' }}
                     pl={0}
