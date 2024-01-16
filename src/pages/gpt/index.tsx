@@ -16,7 +16,7 @@ import { truncate } from 'lodash';
 import { useCallback, useState } from 'react';
 import * as Icons from 'react-icons/ri';
 import { GPT_MODELS, GPT_OPTIONS } from '../../constants';
-import { getItem, openai, saveItem } from './utils';
+import { deleteItem, getItem, openai, saveItem } from './utils';
 
 const Gpt = () => {
     const [apiKey, setApiKey] = useState('');
@@ -86,6 +86,7 @@ const Gpt = () => {
                 label="Option"
                 w="100%"
                 placeholder="Pick Option"
+                searchable
                 data={GPT_OPTIONS}
                 value={option}
                 onChange={e => {
@@ -142,6 +143,16 @@ const Gpt = () => {
                 <Group position="center" mb={5}>
                     <Button variant="subtle" compact onClick={toggle}>
                         View History
+                    </Button>
+                    <Button
+                        variant="subtle"
+                        compact
+                        onClick={() => {
+                            deleteItem();
+                            window.location.reload();
+                        }}
+                    >
+                        Delete History
                     </Button>
                     <Button variant="filled" compact onClick={dialogToggle}>
                         Save API key

@@ -19,12 +19,12 @@ const ENVIRONMENTS = [
 ];
 
 const PROJECTS = [
-    'kaya-ai',
     'kaya-workloads-dev-397311',
     'kaya-workloads-dev-389715',
     'kaya-workloads-qa-389715',
     'kaya-workloads-pre-prod-389715',
     'kaya-workloads-prod-389715',
+    'kaya-ai',
     'keth-test',
     'sahas-test',
     'kaya-ai-ml-test',
@@ -39,7 +39,7 @@ const ExternalLink = ({ link, text }: any) => {
 };
 
 const Links = () => {
-    const [kayaValue, setKayaValue] = useState<string | null>(Environments.DEV);
+    const [kayaValue, setKayaValue] = useState<string | null>(Environments.DEVELOP);
     const appValue = kayaValue === Environments.PROD ? 'app' : kayaValue;
     const KAYA_ADMIN_URL = `https://admin-portal-web.${appValue}.kayatech.com`;
     const KAYA_CORE_WEB_URL = `https://${appValue}.kayatech.com`;
@@ -106,7 +106,8 @@ const Links = () => {
                 <ExternalLink link={KAYA_CORE_WEB_URL} text={'Kaya Core Web'} />
                 <ExternalLink link={KAYA_TEST_CORE_WEB_URL} text={'Kaya Test Web'} />
                 <ExternalLink link={KAY_APOLLO_URL} text={'Kaya Apollo'} />
-                <ExternalLink link={KEYCLOAK_URL} text={'Keycloak'} />
+                <ExternalLink link={KEYCLOAK_URL} text={'Keycloak'} />{' '}
+                <ExternalLink link={'https://bernie.develop.kayatech.com/'} text={'Bernie'} />
             </SimpleGrid>
         </div>
     );

@@ -22,4 +22,8 @@ const getItem = (): any[] => {
     return existingList ? JSON.parse(existingList) : [];
 };
 
-export { openai, saveItem, getItem };
+const deleteItem = () => {
+    localStorage.removeItem(KEY);
+};
+
+export { openai, saveItem, getItem, deleteItem };
