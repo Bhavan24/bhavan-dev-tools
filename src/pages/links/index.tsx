@@ -18,17 +18,15 @@ const ENVIRONMENTS = [
     Environments.PROD,
 ];
 
-const PROJECTS = [
-    'kaya-workloads-dev-397311',
-    'kaya-workloads-dev-389715',
-    'kaya-workloads-qa-389715',
-    'kaya-workloads-pre-prod-389715',
-    'kaya-workloads-prod-389715',
-    'kaya-ai',
-    'keth-test',
-    'sahas-test',
-    'kaya-ai-ml-test',
-];
+const getProjectsFromLocalStorage = () => {
+    try {
+        const projects = localStorage.getItem('projects');
+        if (projects) return JSON.parse(projects);
+        return [];
+    } catch (error) {
+        return [];
+    }
+};
 
 const ExternalLink = ({ link, text }: any) => {
     return (
@@ -46,6 +44,8 @@ const Links = () => {
     const KAYA_TEST_CORE_WEB_URL = `https://test-web.${appValue}.kayatech.com`;
     const KAY_APOLLO_URL = `https://apollo-gateway.${appValue}.kayatech.com/graphql`;
     const KEYCLOAK_URL = `https://idp.${appValue}.kayatech.com/auth`;
+    const BERNIE_URL = `https://bernie.${appValue}.kayatech.com`;
+    const PROJECTS = getProjectsFromLocalStorage();
 
     const [projects, setProjects] = useState<string[]>(PROJECTS);
     const [gcpProject, setGCPProject] = useState<string>(PROJECTS[0]);
@@ -106,8 +106,8 @@ const Links = () => {
                 <ExternalLink link={KAYA_CORE_WEB_URL} text={'Kaya Core Web'} />
                 <ExternalLink link={KAYA_TEST_CORE_WEB_URL} text={'Kaya Test Web'} />
                 <ExternalLink link={KAY_APOLLO_URL} text={'Kaya Apollo'} />
-                <ExternalLink link={KEYCLOAK_URL} text={'Keycloak'} />{' '}
-                <ExternalLink link={'https://bernie.develop.kayatech.com/'} text={'Bernie'} />
+                <ExternalLink link={KEYCLOAK_URL} text={'Keycloak'} />
+                <ExternalLink link={BERNIE_URL} text={'Bernie'} />
             </SimpleGrid>
         </div>
     );
