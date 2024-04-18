@@ -1,6 +1,6 @@
 import { Tabs } from '@mantine/core';
 import * as Icons from 'react-icons/ri';
-import { Code, Gpt, Links, Testing, Utility } from './pages';
+import { Code, Gpt, Links, Testing, Utility, Markdown, TodoApp, External } from './pages';
 
 function App() {
     return (
@@ -46,7 +46,7 @@ function App() {
                 </Tabs.Panel>
 
                 <Tabs.Panel value="markdown" pt="xs">
-                    markdown
+                    <Markdown />
                 </Tabs.Panel>
 
                 <Tabs.Panel value="gpt" pt="xs">
@@ -58,11 +58,11 @@ function App() {
                 </Tabs.Panel>
 
                 <Tabs.Panel value="todo" pt="xs">
-                    todo
+                    <TodoApp />
                 </Tabs.Panel>
 
                 <Tabs.Panel value="external" pt="xs">
-                    external
+                    <External />
                 </Tabs.Panel>
             </Tabs>
         </div>
