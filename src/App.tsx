@@ -1,6 +1,6 @@
 import { Tabs } from '@mantine/core';
 import * as Icons from 'react-icons/ri';
-import { Code, Gpt, Links, Testing, Utility, Markdown, TodoApp, External } from './pages';
+import { Code, Gpt, Links, Testing, Utility, TodoApp, External } from './pages';
 
 function App() {
     return (
@@ -15,9 +15,6 @@ function App() {
                     </Tabs.Tab>
                     <Tabs.Tab value="code" icon={<Icons.RiCodeBoxLine />}>
                         JSON
-                    </Tabs.Tab>
-                    <Tabs.Tab value="markdown" icon={<Icons.RiMarkdownLine />}>
-                        Markdown
                     </Tabs.Tab>
                     <Tabs.Tab value="gpt" icon={<Icons.RiOpenaiFill />}>
                         GPT
@@ -43,10 +40,6 @@ function App() {
 
                 <Tabs.Panel value="code" pt="xs">
                     <Code />
-                </Tabs.Panel>
-
-                <Tabs.Panel value="markdown" pt="xs">
-                    <Markdown />
                 </Tabs.Panel>
 
                 <Tabs.Panel value="gpt" pt="xs">
