@@ -17,6 +17,7 @@ import { useCallback, useState } from 'react';
 import * as Icons from 'react-icons/ri';
 import { GPT_MODELS, GPT_OPTIONS } from '../../constants';
 import { deleteItem, getItem, openai, saveItem } from './utils';
+import { SpeechToText } from './speech';
 
 const Gpt = () => {
     const [apiKey, setApiKey] = useState('');
@@ -111,11 +112,11 @@ const Gpt = () => {
                 }}
                 rightSection={
                     <Flex gap="sm" justify="space-between" align="center" direction="row" wrap="wrap" h="100%">
-                        {/* <SpeechToText
+                        <SpeechToText
                             onChange={(text: any) => {
                                 setPrompt(text);
                             }}
-                        /> */}
+                        />
                         <ActionIcon onClick={askQuery} loading={submitting}>
                             <Icons.RiSendPlaneFill />
                         </ActionIcon>

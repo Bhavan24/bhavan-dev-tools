@@ -37,18 +37,19 @@ const ExternalLink = ({ link, text }: any) => {
 };
 
 const Links = () => {
+    const PROJECTS = getProjectsFromLocalStorage();
     const [kayaValue, setKayaValue] = useState<string | null>(Environments.DEVELOP);
+    const [projects, setProjects] = useState<string[]>(PROJECTS);
+    const [gcpProject, setGCPProject] = useState<string>(PROJECTS[0]);
     const appValue = kayaValue === Environments.PROD ? 'app' : kayaValue;
+
     const KAYA_ADMIN_URL = `https://admin-portal-web.${appValue}.kayatech.com`;
     const KAYA_CORE_WEB_URL = `https://${appValue}.kayatech.com`;
     const KAYA_TEST_CORE_WEB_URL = `https://test-web.${appValue}.kayatech.com`;
     const KAY_APOLLO_URL = `https://apollo-gateway.${appValue}.kayatech.com/graphql`;
     const KEYCLOAK_URL = `https://idp.${appValue}.kayatech.com/auth`;
-    const BERNIE_URL = `https://bernie.${appValue}.kayatech.com`;
-    const PROJECTS = getProjectsFromLocalStorage();
+    const BERNIE_URL = Environments.PROD ? `https://bernie.kayatech.com` : `https://bernie.${appValue}.kayatech.com`;
 
-    const [projects, setProjects] = useState<string[]>(PROJECTS);
-    const [gcpProject, setGCPProject] = useState<string>(PROJECTS[0]);
     const GCP_BASE_URL = `https://console.cloud.google.com/welcome?project=${gcpProject}&supportedpurview=project`;
     const GCP_STORAGE_URL = `https://console.cloud.google.com/storage/browser?referrer=search&project=${gcpProject}&supportedpurview=project`;
     const GCP_WORKLOADS_URL = `https://console.cloud.google.com/kubernetes/workload/overview?project=${gcpProject}&supportedpurview=project`;
@@ -65,12 +66,13 @@ const Links = () => {
         <div style={{ margin: '10px' }}>
             <Divider my="md" size="md" label="GCP" labelPosition="center" />
             <Select
-                label="Select GCP Project"
+                label="GCP Project"
                 searchable
                 onSearchChange={setGCPProject}
                 searchValue={gcpProject}
                 nothingFound="No options"
                 placeholder="Pick one"
+                description="localStorage.setItem('projects', JSON.stringify(['kaya-ai']));"
                 data={projects}
                 creatable
                 getCreateLabel={query => `+ Create ${query}`}
@@ -94,7 +96,7 @@ const Links = () => {
             </SimpleGrid>
             <Divider my="md" size="md" label="KAYA" labelPosition="center" />
             <Select
-                label="Select Environment"
+                label="Environment"
                 onChange={setKayaValue}
                 value={kayaValue}
                 nothingFound="No options"

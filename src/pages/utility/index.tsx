@@ -1,4 +1,4 @@
-import { Button, ColorPicker, Flex, Select, SimpleGrid, Textarea } from '@mantine/core';
+import { Button, ColorPicker, Flex, Grid, Select, SimpleGrid, Textarea } from '@mantine/core';
 import * as changeCase from 'change-case';
 import { useState } from 'react';
 import { TextFieldWithCopy } from '../../components';
@@ -60,7 +60,7 @@ const GetPublicIpComponent = () => {
     };
 
     return (
-        <Flex mih={50} gap="sm" justify="center" align="center" direction="row" wrap="wrap">
+        <Flex mih={50} gap="sm" justify="center" align="center" direction="column" wrap="wrap">
             <TextFieldWithCopy value={ip} setValue={setIp} />
             <Button loading={loading} onClick={getPublicIp}>
                 Get Public IP
@@ -77,7 +77,7 @@ const GetTimestampComponent = () => {
     };
 
     return (
-        <Flex mih={50} gap="sm" justify="center" align="center" direction="row" wrap="wrap">
+        <Flex mih={50} gap="sm" justify="center" align="center" direction="column" wrap="wrap">
             <TextFieldWithCopy value={timestamp} setValue={setTimestamp} />
             <Button onClick={getCurrentTimestamp}>Get Timestamp</Button>
         </Flex>
@@ -225,7 +225,7 @@ const ChangeTextCaseComponent = () => {
 
 const Utility = () => {
     return (
-        <SimpleGrid cols={2} spacing="sm" verticalSpacing="sm" py={10}>
+        <SimpleGrid py={10} cols={2} spacing="lg" breakpoints={[{ maxWidth: '48rem', cols: 1, spacing: 'sm' }]}>
             <GetPublicIpComponent />
             <GetTimestampComponent />
             <ChangeTextCaseComponent />
@@ -237,4 +237,3 @@ const Utility = () => {
 };
 
 export { Utility };
-
