@@ -1,6 +1,6 @@
-import { Avatar, Badge, Flex, Tabs } from '@mantine/core';
+import { Tabs } from '@mantine/core';
 import * as Icons from 'react-icons/ri';
-import { Code, Gpt, Links, Testing, Utility } from './pages';
+import { Code, Gpt, Links, Testing, Utility, TodoApp, External } from './pages';
 
 function App() {
     return (
@@ -14,13 +14,19 @@ function App() {
                         Testing
                     </Tabs.Tab>
                     <Tabs.Tab value="code" icon={<Icons.RiCodeBoxLine />}>
-                        Code
+                        JSON
                     </Tabs.Tab>
                     <Tabs.Tab value="gpt" icon={<Icons.RiOpenaiFill />}>
                         GPT
                     </Tabs.Tab>
                     <Tabs.Tab value="links" icon={<Icons.RiLinksFill />}>
                         Links
+                    </Tabs.Tab>
+                    <Tabs.Tab value="todo" icon={<Icons.RiBook2Line />}>
+                        Notes
+                    </Tabs.Tab>
+                    <Tabs.Tab value="external" icon={<Icons.RiExternalLinkLine />}>
+                        External
                     </Tabs.Tab>
                 </Tabs.List>
 
@@ -43,29 +49,15 @@ function App() {
                 <Tabs.Panel value="links" pt="xs">
                     <Links />
                 </Tabs.Panel>
+
+                <Tabs.Panel value="todo" pt="xs">
+                    <TodoApp />
+                </Tabs.Panel>
+
+                <Tabs.Panel value="external" pt="xs">
+                    <External />
+                </Tabs.Panel>
             </Tabs>
-            <Flex justify="center" m={5} style={{ float: 'right', display: 'none' }}>
-                <Badge
-                    style={{ cursor: 'pointer' }}
-                    pl={0}
-                    size="lg"
-                    color="blue"
-                    radius="xl"
-                    onClick={() => {
-                        window.open('https://www.linkedin.com/in/bhavan24/', '_blank');
-                    }}
-                    leftSection={
-                        <Avatar
-                            alt="Avatar for badge"
-                            size={24}
-                            mr={5}
-                            src="https://avatars.githubusercontent.com/u/68679905?v=4"
-                        />
-                    }
-                >
-                    @Dev: Bhavan
-                </Badge>
-            </Flex>
         </div>
     );
 }

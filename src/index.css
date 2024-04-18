@@ -22,7 +22,8 @@
 body {
     margin: 0;
     min-width: 750px;
-    min-height: 600px;
+    /* min-height: 600px; CHROME */
+    min-height: 100vh; /* BROWSER */
     overflow-y: scroll;
     border: 5px ridge rgb(98, 101, 105);
     padding: 5px;
