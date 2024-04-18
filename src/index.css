@@ -11,6 +11,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+    --scrollbarBG: #cfd8dc;
+    --thumbBG: #90a4ae;
 }
 
 #root {
@@ -19,7 +21,28 @@
 
 body {
     margin: 0;
-    min-width: 800px;
-    min-height: 100vh;
-    border-style: groove;
+    min-width: 750px;
+    min-height: 600px;
+    overflow-y: scroll;
+    border: 5px ridge rgb(98, 101, 105);
+    padding: 5px;
+}
+
+body::-webkit-scrollbar {
+    width: 11px;
+}
+
+body {
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG);
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
 }
