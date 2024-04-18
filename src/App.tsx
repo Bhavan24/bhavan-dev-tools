@@ -14,13 +14,22 @@ function App() {
                         Testing
                     </Tabs.Tab>
                     <Tabs.Tab value="code" icon={<Icons.RiCodeBoxLine />}>
-                        Code
+                        JSON
+                    </Tabs.Tab>
+                    <Tabs.Tab value="markdown" icon={<Icons.RiMarkdownLine />}>
+                        Markdown
                     </Tabs.Tab>
                     <Tabs.Tab value="gpt" icon={<Icons.RiOpenaiFill />}>
                         GPT
                     </Tabs.Tab>
                     <Tabs.Tab value="links" icon={<Icons.RiLinksFill />}>
                         Links
+                    </Tabs.Tab>
+                    <Tabs.Tab value="todo" icon={<Icons.RiBook2Line />}>
+                        Notes
+                    </Tabs.Tab>
+                    <Tabs.Tab value="external" icon={<Icons.RiExternalLinkLine />}>
+                        External
                     </Tabs.Tab>
                 </Tabs.List>
 
@@ -36,12 +45,24 @@ function App() {
                     <Code />
                 </Tabs.Panel>
 
+                <Tabs.Panel value="markdown" pt="xs">
+                    markdown
+                </Tabs.Panel>
+
                 <Tabs.Panel value="gpt" pt="xs">
                     <Gpt />
                 </Tabs.Panel>
 
                 <Tabs.Panel value="links" pt="xs">
                     <Links />
+                </Tabs.Panel>
+
+                <Tabs.Panel value="todo" pt="xs">
+                    todo
+                </Tabs.Panel>
+
+                <Tabs.Panel value="external" pt="xs">
+                    external
                 </Tabs.Panel>
             </Tabs>
         </div>
