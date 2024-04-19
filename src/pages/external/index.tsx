@@ -16,22 +16,33 @@ const External = () => {
     const [links, setLinks] = useState<string[]>(LINKS);
     const [currentLink, setCurrentLink] = useState<string>(LINKS[0]);
 
+    const handleAddLink = (newLink: string) => {
+        if (newLink.trim() !== '') {
+            const newLinks = [...links, newLink];
+            setLinks(newLinks);
+            localStorage.setItem('links', JSON.stringify(newLinks));
+        }
+    };
+
     return (
         <Flex direction="column">
             <Select
                 my={4}
-                label="External Link"
+                label={
+                    <a href={currentLink} target="_blank" rel="noreferrer">
+                        External Link
+                    </a>
+                }
                 searchable
                 onSearchChange={setCurrentLink}
                 searchValue={currentLink}
                 nothingFound="No options"
                 placeholder="Pick one"
-                description="localStorage.setItem('links', JSON.stringify(['https://remarkjs.github.io/react-markdown']));"
                 data={links}
                 creatable
                 getCreateLabel={query => `+ Create ${query}`}
                 onCreate={query => {
-                    setLinks(current => [...current, query]);
+                    handleAddLink(query);
                     return query;
                 }}
             />

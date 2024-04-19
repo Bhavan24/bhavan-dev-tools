@@ -61,6 +61,15 @@ const Links = () => {
     const GCP_CF_URL = `https://console.cloud.google.com/functions/list?referrer=search&project=${gcpProject}&supportedpurview=project`;
     const GCP_CR_URL = `https://console.cloud.google.com/run?project=${gcpProject}&supportedpurview=project`;
     const GCP_FB_URL = `https://console.firebase.google.com/project/${gcpProject}/overview`;
+    const GCP_SM_URL = `https://console.cloud.google.com/security/secret-manager?project=${gcpProject}&supportedpurview=project`;
+
+    const handleAddProject = (newProject: string) => {
+        if (newProject.trim() !== '') {
+            const newProjects = [...projects, newProject];
+            setProjects(newProjects);
+            localStorage.setItem('projects', JSON.stringify(newProjects));
+        }
+    };
 
     return (
         <div style={{ margin: '10px' }}>
@@ -72,12 +81,11 @@ const Links = () => {
                 searchValue={gcpProject}
                 nothingFound="No options"
                 placeholder="Pick one"
-                description="localStorage.setItem('projects', JSON.stringify(['kaya-ai']));"
                 data={projects}
                 creatable
                 getCreateLabel={query => `+ Create ${query}`}
                 onCreate={query => {
-                    setProjects(current => [...current, query]);
+                    handleAddProject(query);
                     return query;
                 }}
             />
@@ -91,6 +99,7 @@ const Links = () => {
                 <ExternalLink link={GCP_IAM_URL} text={'GCP IAM'} />
                 <ExternalLink link={GCP_CF_URL} text={'Cloud Functions'} />
                 <ExternalLink link={GCP_CR_URL} text={'Cloud Run'} />
+                <ExternalLink link={GCP_SM_URL} text={'Secret Manager'} />
                 <ExternalLink link={GCP_FB_URL} text={'Firebase'} />
                 <ExternalLink link={GCP_BASE_URL} text={'Welcome Page'} />
             </SimpleGrid>
